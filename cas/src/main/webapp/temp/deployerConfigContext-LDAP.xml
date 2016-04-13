@@ -125,21 +125,21 @@
 					| local authentication strategy.  You might accomplish this by coding a new such handler and declaring
 					| edu.someschool.its.cas.MySpecialHandler here, or you might use one of the handlers provided in the adaptors modules.
 					+-->
+				<bean class="org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler" />
 				
-				<!-- JDBC Handler -->
-				
-				<bean class="org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler">
-					<property name="dataSource" ref="dataSource"></property>
-					<property name="sql" value="select password from t_user where userName=?"></property>
-					<property name="passwordEncoder" ref="passwordEncoder"></property>
-				</bean>
+				<!--LDAP Handler-->
+		        <bean class="org.jasig.cas.adaptors.ldap.BindLdapAuthenticationHandler">
+		              <property name="filter" value="cn=%u" />
+		              <!-- 基节点 -->
+		              <property name="searchBase" value="ou=People,dc=maxcrc,dc=com" />
+		              <property name="contextSource" ref="contextSource" />
+		              <property name="searchContextSource" ref="pooledContextSource" />
+		              <property name="ignorePartialResultException" value="true"></property>
+		        </bean>
 			</list>
 		</property>
 	</bean>
 
-	<bean id="passwordEncoder" class="org.jasig.cas.authentication.handler.DefaultPasswordEncoder">
-		<constructor-arg name="encodingAlgorithm" value="SHA-256" />
-	</bean>
 
 	<!--
 	This bean defines the security roles for the Services Management application.  Simple deployments can use the in-memory version.
@@ -196,6 +196,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<!-- JDBC数据源 -->
+	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${driver}" />
@@ -215,6 +216,41 @@
 	</bean>
 	
 	<!-- ###serviceRegistryDao Config End### -->
+
+	<!-- LDAP 数据源 开始 -->
+	<bean id="contextSource" class="org.springframework.ldap.core.support.LdapContextSource">
+		<property name="password" value="secret" />
+		<property name="pooled" value="true" />
+		<property name="url" value="ldap://localhost:389" />
+
+		<!--管理员 -->
+		<property name="userDn" value="cn=Manager,dc=maxcrc,dc=com" />
+		<property name="baseEnvironmentProperties">
+			<map>
+				<!-- Three seconds is an eternity to users. -->
+				<entry key="com.sun.jndi.ldap.connect.timeout" value="60" />
+				<entry key="com.sun.jndi.ldap.read.timeout" value="60" />
+				<entry key="java.naming.security.authentication" value="simple" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- LDAP连接池数据源 -->
+	<bean id="pooledContextSource" class="org.springframework.ldap.pool.factory.PoolingContextSource" 
+		  p:minIdle="${ldap.pool.minIdle}" p:maxIdle="${ldap.pool.maxIdle}" 
+		  p:maxActive="${ldap.pool.maxSize}" p:maxWait="${ldap.pool.maxWait}" 
+		  p:timeBetweenEvictionRunsMillis="${ldap.pool.evictionPeriod}" 
+		  p:minEvictableIdleTimeMillis="${ldap.pool.idleTime}" p:testOnBorrow="${ldap.pool.testOnBorrow}" 
+		  p:testWhileIdle="${ldap.pool.testWhileIdle}" p:dirContextValidator-ref="dirContextValidator" 
+		  p:contextSource-ref="contextSource" />
+
+	<bean id="dirContextValidator" class="org.springframework.ldap.pool.validation.DefaultDirContextValidator" p:base="" p:filter="objectclass=*">
+		<property name="searchControls">
+			<bean class="javax.naming.directory.SearchControls" p:timeLimit="1000" p:countLimit="1" p:searchScope="0" p:returningAttributes="" />
+		</property>
+	</bean>
+	
+	<!-- LDAP 数据源 结束 -->
 	
 
   <bean id="auditTrailManager" class="com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager" />
