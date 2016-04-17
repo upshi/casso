@@ -126,6 +126,10 @@
 					| edu.someschool.its.cas.MySpecialHandler here, or you might use one of the handlers provided in the adaptors modules.
 					+-->
 				
+				<!--  -->
+				<!-- 
+				<bean class="org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler" />
+				 -->
 				<!-- JDBC Handler -->
 				
 				<bean class="org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler">
@@ -148,15 +152,19 @@
 	The name of this should remain "userDetailsService" in order for Spring Security to find it.
 	 -->
     <!-- <sec:user name="@@THIS SHOULD BE REPLACED@@" password="notused" authorities="ROLE_ADMIN" />-->
-
-    <sec:user-service id="userDetailsService">
+	
+	<!-- 
+    <sec:user-service id="userDetailsService" >
 		<sec:user name="test" password="test" authorities="ROLE_ADMIN" />
 	</sec:user-service>
+	  -->
+	  
+	<bean id="userDetailsService" class="top.casso.cas.UserDetailsServiceImpl" />
 	
 	<!-- 
 	Bean that defines the attributes that a service may return.  This example uses the Stub/Mock version.  A real implementation
 	may go against a database or LDAP server.  The id should remain "attributeRepository" though.
-	 -->
+	
 	<bean id="attributeRepository"
 		class="org.jasig.services.persondir.support.StubPersonAttributeDao">
 		<property name="backingMap">
@@ -167,6 +175,34 @@
 			</map>
 		</property>
 	</bean>
+	
+	-->
+
+	<!--新增attributeRepository配置(开始) -->
+	<bean id="attributeRepository" class="org.jasig.services.persondir.support.jdbc.SingleRowJdbcPersonAttributeDao">
+		<!-- 指定使用的数据源，此处dataSource是已配置好的数据源 -->
+		<constructor-arg index="0" ref="dataSource" />
+		<!-- 从数据库中查询信息的SQL语句，通常只需要修改表名即可 -->
+		<constructor-arg index="1" value="select * from t_user where {0}" />
+		<property name="queryAttributeMapping">
+			<map>
+				<!-- 上述查询的参数，将userName替换为表中表示用户名的字段名称 -->
+				<entry key="username" value="userName" />
+			</map>
+		</property>
+		<property name="resultAttributeMapping">
+			<map>
+				<!-- 需要返回给Web应用的其它信息，多个信息时可继续增加entry节点 -->
+				<!--key值为数据表中的字段名称，value值为Client端取值时的名称标识 -->
+				<entry key="userName" value="userName" />
+				<entry key="name" value="name" />
+				<entry key="phone" value="phone" />
+				<entry key="email" value="email" />
+				<entry key="address" value="address" />
+			</map>
+		</property>
+	</bean>
+	<!--新增attributeRepository配置(结束) -->
 	
 	
 	<!-- ###serviceRegistryDao Config Start### -->
