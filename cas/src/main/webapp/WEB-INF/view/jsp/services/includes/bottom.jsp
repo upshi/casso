@@ -38,7 +38,7 @@
 
 </section>
 
-<script src="<c:url value="/adminex/js/jquery-1.10.2.min.js" />"></script>
+
 <script src="<c:url value="/js/jquery-ui.min.js" />"></script>
 <script src="<c:url value="/adminex/js/jquery-ui-1.9.2.custom.min.js" />"></script>
 <script src="<c:url value="/adminex/js/jquery-migrate-1.2.1.min.js" />"></script>
@@ -52,6 +52,8 @@
 <script type="text/javascript" src="<c:url value="/js/cas.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/MyInfusion.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/services.js" />"></script>
+
+
 
 </body>
 </html>

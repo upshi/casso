@@ -22,14 +22,12 @@
 <%@include file="includes/top.jsp"%>
 
 <h2>运行时统计数据</h2>
-<table width="800">
-    <thead>
-        <tr>
-            <th>属性</th>
-            <th>值</th>
-        </tr>
-    </thead>
+<table width="1000">
     <tbody>
+    	<tr>
+            <td><b>属性</b></td>
+            <td><b>值</b></td>
+        </tr>
         <tr>
             <td>服务器</td>
             <td>${serverIpAddress} (${serverHostName})</td>
@@ -66,14 +64,12 @@
 <br /><br />
 
 <h2>Ticket Registry 统计数据</h2>
-<table width="800">
-    <thead>
-        <tr>
-            <th>属性</th>
-            <th>值</th>
-        </tr>
-    </thead>
+<table width="1000">
     <tbody>
+    	<tr>
+            <td><b>属性</b></td>
+            <td><b>值</b></td>
+        </tr>
         <tr>
             <td>有效 TGTs</td>
             <td>${unexpiredTgts}</td>
@@ -99,5 +95,5 @@
 	<h3>${appender.name}</h3>
 	<img src="${appender.chartGenerator.chartUrl}" alt="${appender.name}" />
 </c:forEach>
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <%@include file="includes/bottom.jsp" %>

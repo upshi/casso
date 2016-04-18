@@ -120,7 +120,7 @@ _______________________________
     padding:20px 20px 20px 85px; /* bg */
     margin:0 0 1em;
    font-weight:bold;
-    font-size:1.3em;
+    font-size:2em;
     line-height:1.5;
 }
 .success {
@@ -144,16 +144,16 @@ fieldset {
 legend {
     margin:1em 5px;
     color:#b00;
-    font-size:1.1em;
+    font-size:2em;
     font-weight:bold;
     text-transform:uppercase;
 }
 label {
     cursor:pointer;
-    font-size:1em;
+    font-size:2em;
     color:#666;
 }
-input, select, textarea, option {font:normal 1.1em sans-serif;}
+input, select, textarea, option {font:normal 2em sans-serif;}
 input, textarea {padding:0px 2px;}
 select option {margin:auto .5em 0 0;}
 /* vertically aligned form*/
@@ -167,7 +167,7 @@ background: #fafafa url('../../images/services/alert2.gif') no-repeat 0 50%;
 /* bg */
 color:#b00; /* bg */
 margin-left:.5em; /* bg */
-font-size:1.4em;
+font-size:2em;
 line-height:20px; padding-left:24px; padding-right:0; padding-top:0; padding-bottom:0
 }
 
@@ -183,7 +183,7 @@ table {
     border-collapse:collapse;
     empty-cells:show;
     background-color:#fff;
-    font-size:1.1em;
+    font-size:2em;
     border-collapse:separate; 
     border-spacing: 0px;
     }
@@ -227,7 +227,7 @@ td a {
     width:100%;
     text-indent:5px;
     padding-top: 5px;
-    font-size:1.1em;
+    font-size:2em;
 }
     
 .add a {background: url('../../images/services/add_service.gif') no-repeat left center;
@@ -247,7 +247,7 @@ td a:hover {color:#b00;}
 
     p.instructions {
         margin:1em 0;
-        font-size:1.2em;
+        font-size:2em;
         background:url('../../images/services/info.gif') no-repeat left center; padding-left:2em; padding-right:0; padding-top:5px; padding-bottom:5px
         }
 
@@ -262,23 +262,23 @@ td a:hover {color:#b00;}
     legend {
         padding:2px 5px;
         color:#b00;
-        font-size:1.3em;
+        font-size:2em;
         font-weight:900;
         background:#fff;
         }
 
     label.preField, .label {
         display:block;
-        width:8em;
+        width:12em;
         float:left;
-        font-size:1.1em;
+        font-size:2em;
 		color:#666; /* + bg */
 		line-height:20px; /* + bg */
         }
 
     label.postField {
         margin-right:1em;
-        font-size:1.1em;
+        font-size:2em;
         vertical-align:middle;  /*- bg */
 		line-height:20px; /* + bg */
         }
@@ -296,7 +296,7 @@ td a:hover {color:#b00;}
 
     input {
         /* margin-left:.5em;  - bg */
-        font-size:1.1em;
+        font-size:2em;
         vertical-align:top;
         }
 
@@ -306,7 +306,7 @@ td a:hover {color:#b00;}
         padding:0;
         }
 
-button {font-size:1em;}
+button {font-size:2em;}
 
 .primaryAction {
     padding:.5em;
@@ -353,11 +353,11 @@ button {font-size:1em;}
     th.th6, td.td6 {width:70px;}
     th.th7, td.td7 {width:102px;}
     th.th8, td.td8 {width:70px}
-    th.th9, td.td9 {width:70px; text-align:right !important;}
+    th.th9, td.td9 {width:80px; text-align:right !important;}
     th.th10, td.td10 {width:102px; text-align:right !important;}
     
-	.hint {margin-left:9.5em; margin-bottom:1em; line-height:1.5;}
-	.actions {margin:1.5em 0;}
+	.hint {margin-left:13em; margin-bottom:1em; line-height:1.5;font-size:2em;}
+	.actions {margin:1.5em 0; font-size:2em;}
 	#allowedAttributes {height:150px;}			
 }
 

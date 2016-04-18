@@ -1,4 +1,4 @@
-package top.casso.cas;
+package top.casso.cas.security;
 
 
 import java.util.Collection;
@@ -18,8 +18,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = null;
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		
 		String password = "111111";
 		boolean enabled = true;
 		boolean accountNonExpired = true;
@@ -27,7 +25,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		
 		boolean accountNonLocked = true;
 		Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		if(username.equals("upshi")) {
+			authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		} else {
+			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+		}
 		
 		user = new User(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 		return user;

@@ -37,6 +37,7 @@
 <link href="<c:url value="/adminex/css/style-responsive.css" />"  rel="stylesheet" />
 
 <link rel="stylesheet" href="<c:url value="/css/services/cas.css" />" type="text/css" />
+<script src="<c:url value="/adminex/js/jquery-1.10.2.min.js" />"></script>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
@@ -100,14 +101,28 @@ span {
                         <ul class="dropdown-menu">
                             <li><a href="#">Profile</a></li>
                             <li><a href="#">Settings</a></li>
-                            <li><a href="#">Log Out</a></li>
+                            <li><a id="nav-logout" href="<c:url value="/logout" />" url="<c:url value="/services/logout.html" />">Log Out</a></li>
                         </ul>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-
+    
+    <!-- 在单点退出之前  先退出本应用 -->
+    <script>
+		$('#nav-logout').on('click', function(){
+			var flag = false;
+			$.ajax({
+				url: $(this).attr('url'), 
+				async : false ,
+				success: function(){
+					flag = true;
+				}
+			});
+			return flag;
+		})
+	</script>
 
     <!--body wrapper start-->
     <div class="wrapper">

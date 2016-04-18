@@ -32,7 +32,7 @@
       /WEB-INF/deployerConfigContext.xml
     </param-value>
   </context-param>
-
+  
   <filter>
     <filter-name>CAS Client Info Logging Filter</filter-name>
     <filter-class>com.github.inspektr.common.web.ClientInfoThreadLocalFilter</filter-class>
@@ -108,7 +108,14 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
-	
+  
+  
+  <servlet-mapping>
+    <servlet-name>cas</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+	<!-- 
   <servlet-mapping>
     <servlet-name>cas</servlet-name>
     <url-pattern>/login</url-pattern>
@@ -173,7 +180,7 @@
     <servlet-name>cas</servlet-name>
     <url-pattern>/services/manage.html</url-pattern>
   </servlet-mapping>
-
+  
   <servlet-mapping>
     <servlet-name>cas</servlet-name>
     <url-pattern>/services/edit.html</url-pattern>
@@ -203,15 +210,21 @@
     <servlet-name>cas</servlet-name>
     <url-pattern>/authorizationFailure.html</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>cas</servlet-name>
+    <url-pattern>/services/user/*</url-pattern>
+  </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>cas</servlet-name>
     <url-pattern>/403.html</url-pattern>
   </servlet-mapping>
-
+  -->
+ 
   <session-config>
     <!-- Default to 5 minute session timeouts -->
-    <session-timeout>5</session-timeout>
+    <session-timeout>10</session-timeout>
   </session-config>
 
   <error-page>
@@ -223,12 +236,12 @@
     <error-code>500</error-code>
     <location>/WEB-INF/view/jsp/errors.jsp</location>
   </error-page>
-
+<!-- 
   <error-page>
     <error-code>404</error-code>
     <location>/</location>
   </error-page>
-
+ -->
   <error-page>
     <error-code>403</error-code>
     <location>/403.html</location>

@@ -159,7 +159,7 @@
 	</sec:user-service>
 	  -->
 	  
-	<bean id="userDetailsService" class="top.casso.cas.UserDetailsServiceImpl" />
+	<bean id="userDetailsService" class="top.casso.cas.security.UserDetailsServiceImpl" />
 	
 	<!-- 
 	Bean that defines the attributes that a service may return.  This example uses the Stub/Mock version.  A real implementation

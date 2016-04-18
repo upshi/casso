@@ -71,5 +71,5 @@
 		</tbody>
 	</table>
 </div>
-<div class="add"><a href="add.html"><span style="text-transform: lowercase;"><spring:message code="addServiceView" /></span></a></div>	  
+<div class="add"><a href="add.html"><spring:message code="addServiceView" /></a></div>	  
 <%@include file="includes/bottom.jsp" %>
