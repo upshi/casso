@@ -23,7 +23,6 @@
 
 </div>
                 <div id="footer" class="fl-panel fl-note fl-bevel-white fl-font-size-80">
-                	<a id="jasig" href="http://www.jasig.org" title="go to Jasig home page"></a>
                     <div id="copyright">
                         <p>Copyright &copy; 2015 - 2016 YIHEIDAODI, Inc. All rights reserved.</p>
                         <p>Powered by 王豫宁 兰州理工大学 计算机与通信学院 软件工程12级1班</p>

@@ -18,7 +18,7 @@
     under the License.
 
 --%>
-<%@ page language="java"  session="false"%>
+<%@ page language="java"  session="false" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
  <body onload="document.acsForm.submit();">
@@ -29,7 +29,7 @@
        </c:forEach>
      </div>
      <noscript>
-       <p>You are being redirected to <c:out value="${originalUrl}" escapeXml="true" />. Please click &quot;Continue&quot; to continue your login.</p>
+       <p>您正在被重定向至 <c:out value="${originalUrl}" escapeXml="true" />. 请点击 &quot;Continue&quot; 去登录.</p>
        <p><input type="submit" value="Continue" /></p>
      </noscript>
    </form>

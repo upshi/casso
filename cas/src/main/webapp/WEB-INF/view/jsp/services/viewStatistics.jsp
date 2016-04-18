@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%--
 
     Licensed to Jasig under one or more contributor license
@@ -20,41 +21,43 @@
 --%>
 <%@include file="includes/top.jsp"%>
 
-<h2>Runtime Statistics</h2>
+<h2>运行时统计数据</h2>
 <table width="800">
     <thead>
         <tr>
-            <th>Property</th>
-            <th>Value</th>
+            <th>属性</th>
+            <th>值</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Server</td>
+            <td>服务器</td>
             <td>${serverIpAddress} (${serverHostName})</td>
         </tr>
         <tr>
-            <td>CAS Ticket Suffix</td>
+            <td>中央认证服务票据后缀</td>
             <td>${casTicketSuffix}</td>
         </tr>
         <tr>
-            <td>Server Start Time</td>
-            <td>${startTime}</td>
+            <td>服务开始时间</td>
+            <td>
+            	<fmt:formatDate value="${startTime}" pattern="yyyy年MM月dd日   E  HH:mm:ss"/>
+            </td>
         </tr>
         <tr>
-            <td>Uptime</td>
+            <td>持续时间</td>
             <td>${upTime}</td>
         </tr>
         <tr>
-            <td>Memory</td>
-            <td> ${freeMemory} MB free <img src="../images/green.gif" width="${freeMemory / (totalMemory) * 500}" height="30" /><img src="../images/red.gif" width="${(totalMemory - freeMemory) / totalMemory * 500}" height="30" /> ${totalMemory} MB total </td>
+            <td>内存</td>
+            <td> ${freeMemory} MB 空闲 <img src="../images/green.gif" width="${freeMemory / (totalMemory) * 500}" height="30" /><img src="../images/red.gif" width="${(totalMemory - freeMemory) / totalMemory * 500}" height="30" /> ${totalMemory} MB 总共 </td>
         </tr>
         <tr>
-            <td>Maximum Memory</td>
+            <td>最大内存</td>
             <td>${maxMemory} MB</td>
         </tr>
         <tr>
-            <td>Available Processors</td>
+            <td>有效处理器</td>
             <td>${availableProcessors}</td>
         </tr>
     </tbody>
@@ -62,41 +65,39 @@
 
 <br /><br />
 
-<h2>Ticket Registry Statistics</h2>
+<h2>Ticket Registry 统计数据</h2>
 <table width="800">
     <thead>
         <tr>
-            <th>Property</th>
-            <th>Value</th>
+            <th>属性</th>
+            <th>值</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Unexpired TGTs</td>
+            <td>有效 TGTs</td>
             <td>${unexpiredTgts}</td>
         </tr>
         <tr>
-            <td>Unexpired STs</td>
+            <td>有效 STs</td>
             <td>${unexpiredSts}</td>
         </tr>
         <tr>
-            <td>Expired TGTs</td>
+            <td>失效 TGTs</td>
             <td>${expiredTgts}</td>
         </tr>
         <tr>
-            <td>Expired STs</td>
+            <td>失效 STs</td>
             <td>${expiredSts}</td>
         </tr>
     </tbody>
 </table>
-
-<h2>Performance Statistics</h2>
-
+<br>
+<h2>性能统计数据</h2>
+<br>
 <c:forEach items="${graphingStatisticAppenders}" var="appender">
-<h3>${appender.name}</h3>
-
-<img src="${appender.chartGenerator.chartUrl}" alt="${appender.name}" />
-
+	<h3>${appender.name}</h3>
+	<img src="${appender.chartGenerator.chartUrl}" alt="${appender.name}" />
 </c:forEach>
 
 <%@include file="includes/bottom.jsp" %>

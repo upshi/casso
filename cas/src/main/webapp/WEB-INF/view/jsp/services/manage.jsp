@@ -40,8 +40,10 @@
 		<th class="th4 ac"><spring:message code="management.services.manage.label.allowedToProxy" /></th>
 		<th class="th5 ac"><spring:message code="management.services.manage.label.ssoParticipant" /></th>
 		<th class="th6 ac"><spring:message code="management.services.manage.label.anonymous" /></th>
-  		<th class="th7 ac"><spring:message code="management.services.manage.label.usernameAttribute" /></th>
-  		<th class="th8 ac"><spring:message code="management.services.manage.label.evaluationOrder" /></th>
+  		<%-- 
+  			<th class="th7 ac"><spring:message code="management.services.manage.label.usernameAttribute" /></th>
+  			<th class="th8 ac"><spring:message code="management.services.manage.label.evaluationOrder" /></th>
+  		--%>
    		<th class="th9">&nbsp;</th>
 		<th class="th10">&nbsp;</th> 
 	</tr>
@@ -58,8 +60,10 @@
 	         <td class="ac td4"><img src="../images/services/${service.allowedToProxy}.gif" alt="${service.allowedToProxy ? 'Allowed to Proxy' : 'Not Allowed to Proxy'}" /></td>
 	         <td class="ac td5"><img src="../images/services/${service.ssoEnabled}.gif" alt="${service.ssoEnabled ? 'SSO Enabled' : 'SSO Disabled'}" /></td>
 	         <td class="ac td6"><img src="../images/services/${service.anonymousAccess}.gif" alt="${service.anonymousAccess ? 'Anonyous Access Enabled' : 'Anonyous Access Disabled'}" /></td>
+	         <%-- 
 	         <td class="ac td7">${service.usernameAttribute}</td>
 	         <td class="ac td8">${service.evaluationOrder}</td>
+	          --%>
 	         <td class="td9" id="edit${status.index}"><a href="edit.html?id=${service.id}" class="edit"><spring:message code="management.services.manage.action.edit" /></a></td> 
 	         <td class="td10" id="delete${status.index}"><a href="#" class="del" onclick="swapButtonsForConfirm('${status.index}','${service.id}'); return false;"><spring:message code="management.services.manage.action.delete" /></a></td>
 	       </tr>

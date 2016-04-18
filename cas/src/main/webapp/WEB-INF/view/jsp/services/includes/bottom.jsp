@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%--
 
     Licensed to Jasig under one or more contributor license
@@ -18,27 +19,40 @@
     under the License.
 
 --%>
+
 </div>
 <!-- END CONTENT -->
-<!-- FOOTER -->
 
-<div id="footer" class="fl-panel fl-note fl-bevel-white fl-font-size-80">
-                    <a id="jasig" href="http://www.jasig.org" title="go to Jasig home page"></a>
-                    <div>
-                        <h4>Links to CAS Resources:</h4>
-                        <ul id="nav-campus-sites"
-                            ><li><a href="http://www.jasig.org/cas" rel="_blank">Home Page</a>,</li
-                            ><li><a href="http://wiki.jasig.org" rel="_blank">Wiki</a>,</li
-                            ><li><a href="http://issues.jasig.org" rel="_blank">Issue Tracker</a>,</li
-                            ><li><a href="http://www.jasig.org/cas/mailing-lists" rel="_blank">Mailing Lists</a>.</li
-                        ></ul>
-                    </div>
-                    <div id="copyright">
-                        <p>Copyright &copy; 2005 - 2012 Jasig, Inc. All rights reserved.</p>
-                        <p>Powered by <a href="http://www.jasig.org/cas">Jasig Central Authentication Service <%=org.jasig.cas.CasVersion.getVersion()%></a></p>
-                    </div>
-                </div>
+<!--footer section start-->
+<footer class="sticky-footer">
+    <div id="footer" class="fl-panel fl-note fl-bevel-white fl-font-size-80">
+	<a id="casso" href="https://www.casso.top" title="go to casso home page"></a>
+	<div id="copyright">
+		<br>
+		<p>Copyright &copy; 2015 - 2016 YIHEIDAODI, Inc. All rights reserved.</p>
+		<p>Powered by 王豫宁 兰州理工大学 计算机与通信学院 软件工程12级1班</p>
+	</div>
+</div>
+</footer>
+<!--footer section end-->
+
+</section>
+
+<script src="<c:url value="/adminex/js/jquery-1.10.2.min.js" />"></script>
+<script src="<c:url value="/js/jquery-ui.min.js" />"></script>
+<script src="<c:url value="/adminex/js/jquery-ui-1.9.2.custom.min.js" />"></script>
+<script src="<c:url value="/adminex/js/jquery-migrate-1.2.1.min.js" />"></script>
+<script src="<c:url value="/adminex/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/adminex/js/modernizr.min.js" />"></script>
+<script src="<c:url value="/adminex/js/jquery.nicescroll.js" />"></script>
+
+<!--common scripts for all pages-->
+<script src="<c:url value="/adminex/js/scripts.js" />"></script>
+
+<script type="text/javascript" src="<c:url value="/js/cas.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/MyInfusion.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/services.js" />"></script>
+
 </body>
 </html>
-<!-- END FOOTER -->
 

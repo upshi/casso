@@ -43,117 +43,6 @@ form {
 /* general positioning styles */
 .ac {text-align:center !important;}
 
-/* HEADER
- --------------------------------- */
-#header #nav-system {
-    float:right;
-    padding:0;
-}
-#header #nav-system ul {
-    list-style:none;
-    margin:0;
-    padding:0;
-}
-#header #nav-system li {
-    float:left;
-    margin:0;
-    padding:0;
-}
-#header #nav-system li a {
-    float:left;
-    margin:0 0 0 1px;
-    padding:2px 10px;
-    font:normal 1.1em/1.5 Verdana,Arial,Helvetica,sans-serif;
-    text-decoration:none;
-    background-color:#323265;
-    color:#fff;
-    white-space:nowrap;
-}
-#header #nav-system li a:hover,
-#header #nav-system li a:focus {
-    background-color:#fff;
-    color:#323265;
-}
-
-#header p#tagline {
-    padding:0 0 2px 3px;
-    background: #323265;
-    color:#fff;
-    font-size:1.2em;
-    line-height:1.6;
-}
-#header h1#app-name {
-    clear:both;
-    padding:0 0 0 15px;
-    background:#323265;
-    color:#fff;
-    font:2.4em/2em Arial,Helvetica,sans-serif;
-}
-/* MAIN MENU
- --------------------------------- */
-#nav-main {
-    float: left;
-    width: 100%;
-    background: #999;
-    font-size: 1.1em;
-    line-height: normal;
-    padding: 0;
-    xmargin:0 0 1.5em 0;
-    color:#eee;
-}
-#nav-main ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    line-height: 1.4em;
-}
-#nav-main li {
-    display: inline;
-    margin: 0;
-    padding: 0;
-}
-#nav-main a {
-    float: left;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-}
-#nav-main a span {
-    float:left;
-    display:block;
-    padding:5px 10px;
-    background:transparent;
-    color:#eee;
-}
-/* Hide from IE5Mac only \*/
-#nav-main a span {float:none;}
-/* End hack */
-#nav-main a:hover {background:#eee;}
-#nav-main a:hover span {
-    background:#eee;
-    color:#333;
-}
-
-.highlightBottom td {background:#FFEFF3; color:#666; font-weight:400;}
-.highlightBottom td a {display:inline; background:#fff; padding:5px 10px; color:#666; font-weight: normal;}
-.highlightBottom a:hover {background:#b00; color:#fff;}
-
-
-/* CONTENT
- --------------------------------- */
-#content {
-    clear:both;
-    width:auto;
-    padding:1px 0;
-    margin:0 2% 2em;
-}
-#content h1 {
-    margin:15px 0;
-    font:normal 2.2em "Times New Roman",serif;
-    color:#333;
-    background:transparent;
-    text-transform:capitalize;
-}
 #content p {margin:1em 0;}
 /* FOOTER
 ---------------------------------------------------------- */
@@ -180,14 +69,14 @@ form {
     float:left;
 }
 
-#footer a#jasig {
+#footer a#casso {
     position:relative;
     float:right;
     clear:both;
     display: block;
-    background-image: url(../../images/ja-sig-logo.gif);
-    width: 118px;
-    height: 31px;
+    background-image: url(../../images/logo.jpg);
+    width: 256px;
+    height: 56px;
     margin:1em 5px .5em;
 }
 

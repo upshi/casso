@@ -30,7 +30,6 @@
 		<c:if test="${fn:length(assertion.chainedAuthentications[fn:length(assertion.chainedAuthentications)-1].principal.attributes) > 0}">
 			<cas:attributes>
 				<c:forEach var="attr" items="${assertion.chainedAuthentications[fn:length(assertion.chainedAuthentications)-1].principal.attributes}">
-					<!--注意此行的正确写法，网上资料基本都是错误的-->
 					<cas:${fn:escapeXml(attr.key)}>${fn:escapeXml(attr.value)}</cas:${fn:escapeXml(attr.key)}>
 				</c:forEach>
 			</cas:attributes>
