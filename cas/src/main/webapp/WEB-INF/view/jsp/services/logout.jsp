@@ -19,6 +19,9 @@
 
 --%>
 <jsp:directive.include file="includes/top.jsp" />
+		<h1>
+			<spring:message code="${pageTitle}" text="Logged Out" />
+		</h1>
 		<div id="msg" class="success">
 			<h2><spring:message code="screen.logout.header" /></h2>
 			<p><spring:message code="screen.logout.success" /></p>

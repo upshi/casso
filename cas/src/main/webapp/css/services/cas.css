@@ -61,13 +61,6 @@ form {
     clear:left;
     overflow:hidden;
 }
-#footer h4 {
-    font:normal 1em/1.2 Verdana,Arial,Helvetica,sans-serif;
-    clear:left;
-    margin:0;
-    padding:0;
-    float:left;
-}
 
 #footer a#casso {
     position:relative;
@@ -80,36 +73,14 @@ form {
     margin:1em 5px .5em;
 }
 
-#footer #nav-campus-sites {
-    list-style:none;
-    float:left;
-    margin:0 0 0 5px;
-    padding:0;
+/* 覆盖默认样式绝对于底部  */
+footer.sticky-footer {
+    bottom: 0;
+    position: relative;
+    width: 100%;
+    z-index: 99;
 }
-#footer #nav-campus-sites li {
-    display:inline;
-    padding:0;
-    margin:0;
-    font:normal 1em/1.2 Verdana,Arial,Helvetica,sans-serif;
-}
-#footer #nav-campus-sites li:before {} /* content: " | " */
-#footer #nav-campus-sites li:first-child:before {}
-/* All IE browsers */
-* html #footer {height:1px;}
-* html #footer #nav-campus-sites {
-    padding:0 0.4em 0 0;
-    margin:0;
-}
-/* Win IE browsers - hide from Mac IE\*/
-* html #footer #nav-campus-sites {height:1px; }
-* html #footer #nav-campus-sites li {
-    display:block;
-    float:left;
-}
-/* End hide from Mac IE 5 */
-* html #footer #nav-campus-sites li:first-child {border-left:0px none;}
-/*
-_______________________________
+__
 ---    CONTENT  FRAGMENTS    ---
 _______________________________
 */

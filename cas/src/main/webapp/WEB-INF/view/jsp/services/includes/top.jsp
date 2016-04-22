@@ -31,7 +31,7 @@
 <head>
 <title><spring:message code="${pageTitle}" text="Logged Out" /></title>
 <meta name="version" content="<%=org.jasig.cas.CasVersion.getVersion()%>" />
-<link rel="icon" href="<c:url value="../favicon.ico" />" type="image/x-icon" />
+<link rel="icon" href="<c:url value="/favicon.ico" />" type="image/x-icon" />
 
 <link href="<c:url value="/adminex/css/style.css" />"  rel="stylesheet" />
 <link href="<c:url value="/adminex/css/style-responsive.css" />"  rel="stylesheet" />
@@ -61,12 +61,6 @@ span {
         <div class="container-fluid">
         	<!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 <a class="navbar-brand" href="index.html">
                     <img src="<c:url value="/images/logo-index.png" />" alt="">
                 </a>
@@ -75,17 +69,11 @@ span {
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown">服务管理 <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a id="manageServiceView" href="manage.html"><spring:message code="manageServiceView" /></a></li>
-                            <li><a id="addServiceView" href="add.html"><spring:message code="addServiceView" /></a></li>
-                            <li><a id="viewStatisticsView" href="viewStatistics.html"><spring:message code="viewStatisticsView" /></a></li>
-                        </ul>
-                    </li>
-                    <li><a href="index.html">用户管理</a></li>
-                    <li><a href="index.html">角色管理</a></li>
-                    <li><a href="index.html">资源管理</a></li>
+                    <li><a id="manageServiceView" href="<c:url value='/services/manage.html' />"><spring:message code="manageServiceView" /></a></li>
+                    <li><a id="addServiceView" href="<c:url value='/services/add.html' />"><spring:message code="addServiceView" /></a></li>
+                    <li><a id="viewStatisticsView" href="<c:url value='/services/viewStatistics.html' />"><spring:message code="viewStatisticsView" /></a></li>
+                    <li><a href="<c:url value='/services/user/manage' />">用户管理</a></li>
+                    <li><a href="<c:url value='/services/role/manage' />">角色管理</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -126,6 +114,4 @@ span {
 
     <!--body wrapper start-->
     <div class="wrapper">
-		<h1>
-			<spring:message code="${pageTitle}" text="Logged Out" />
-		</h1>
+		

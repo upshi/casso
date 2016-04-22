@@ -20,6 +20,9 @@
 
 --%>
 <%@include file="includes/top.jsp"%>
+<h1>
+	<spring:message code="${pageTitle}" text="Logged Out" />
+</h1>
 
 <h2>运行时统计数据</h2>
 <table width="1000">

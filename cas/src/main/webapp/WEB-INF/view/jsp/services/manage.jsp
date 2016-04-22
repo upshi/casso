@@ -19,6 +19,9 @@
 
 --%>
 <%@include file="includes/top.jsp"%>
+<h1>
+	<spring:message code="${pageTitle}" text="Logged Out" />
+</h1>
 
 <c:if test="${fn:length(services) eq 0}">
        <div id="msg" class="errors"><p><spring:message code="management.services.service.warn" arguments="${defaultServiceUrl}" /></p></div>

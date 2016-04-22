@@ -19,6 +19,9 @@
 
 --%>
 <%@include file="includes/top.jsp"%>
+<h1>
+	<spring:message code="${pageTitle}" text="Logged Out" />
+</h1>
 <form:form action="${registeredService.id ge 0 ? 'edit.html' : 'add.html'}?id=${fn:escapeXml(param.id)}" cssClass="v" cssStyle="width:75%;" commandName="${commandName}">
 	<c:if test="${not empty successMessage}">
 		<div id="msg" class="info">${successMessage}</div>

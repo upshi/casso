@@ -1,0 +1,37 @@
+@CHARSET "UTF-8";
+/* FOOTER
+---------------------------------------------------------- */
+#footer {
+    color:#999;
+    background:transparent;
+    clear:both;
+    margin:0 2% 2em;
+    padding:0 0 1px 0;
+    border-top:1px solid #ccc;
+    position:relative;
+}
+
+#footer div {
+    margin:1em 5px .5em;
+    clear:left;
+    overflow:hidden;
+}
+
+#footer a#casso {
+    position:relative;
+    float:right;
+    clear:both;
+    display: block;
+    background-image: url(../../images/logo.jpg);
+    width: 256px;
+    height: 56px;
+    margin:1em 5px .5em;
+}
+
+/* 覆盖默认样式绝对于底部  */
+footer.sticky-footer {
+    bottom: 0;
+    position: relative;
+    width: 100%;
+    z-index: 99;
+}
