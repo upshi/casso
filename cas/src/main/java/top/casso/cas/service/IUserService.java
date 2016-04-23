@@ -6,6 +6,7 @@ import java.util.List;
 import top.casso.cas.exception.UserException;
 import top.casso.cas.model.User;
 import top.casso.cas.model.UserRole;
+import top.casso.cas.util.UploadObject;
 
 import com.github.pagehelper.PageInfo;
 
@@ -13,7 +14,7 @@ public interface IUserService {
 
 	int deleteByPrimaryKey(String uuid) throws UserException;
 
-    int insert(User record) throws UserException;
+    int insert(User record, UploadObject uo) throws UserException;
     
     int insertUser(User user, List<UserRole> userRoles) throws UserException;
 
@@ -26,5 +27,7 @@ public interface IUserService {
     int updateByPrimaryKey(User record) throws UserException;
     
     PageInfo<User> selectByConditionAndPaging(User user, int page, int rows) throws UserException;
+
+	User selectByUserName(String userName);
 	
 }

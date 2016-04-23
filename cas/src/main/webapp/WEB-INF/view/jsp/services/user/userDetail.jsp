@@ -75,6 +75,12 @@
 							</div>
 							
 							<div class="row">
+								<br>
+								<label class="col-sm-3 text-right">头像:</label> <img src="${user.photo }" height="50" width="50" />
+								<br><br>
+							</div>
+							
+							<div class="row">
 								<label class="col-sm-3 text-right">状态:</label>
 								<c:if test="${user.state == 0}"><label class="col-sm-3">已删除</label></c:if>
 								<c:if test="${user.state == 1}"><label class="col-sm-3">已冻结</label></c:if>
@@ -92,9 +98,11 @@
 							<br><br><br>
 							<div class="row">
 								<br>
-								<div class="col-sm-offset-3  col-sm-20">
+								<div class="col-sm-offset-3 col-sm-20">
 									<a href="services/user/toUpdate/${user.uuid}"  class="btn btn-warning" type="button">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
 									<a href="services/user/toAllocateRole/${user.uuid}"  class="btn btn-info" type="button">分配角色</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									<button id="resetPwd" uuid="${user.uuid}" class="btn btn-warning" type="button">重置密码</button>&nbsp;&nbsp;&nbsp;&nbsp;
+									<button uuid="${user.uuid}" class="btn btn-info" type="button">更改头像</button>&nbsp;&nbsp;&nbsp;&nbsp;
 									<a class="btn btn-danger" onclick="deleteUser('${user.uuid}')">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
 									<a href="services/user/manage" class="btn btn-primary"  type="button">查看人员列表</a>
 								</div>
@@ -109,6 +117,40 @@
 		<!--页脚区域  结束-->
 	</section>
 
+<!-- Modal Start -->
+<div class="modal fade" id="resetPwdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title text-left">
+					 重置密码
+				</h4>
+			</div>
+			<div class="modal-body row">
+				<form action="services/user/resetPwd" method="post" class="form-horizontal adminex-form" role="form">
+					<input type="hidden" name="uuid" value="${user.uuid }" />
+					<div class="form-group" id="passwordGroup">
+						<div class="col-sm-12">
+							<label for="password" class="col-sm-2 control-label">重置密码&nbsp;*</label>
+							<div class="col-lg-7">
+								<input type="password" class="form-control" id="password" name="password" placeholder="请输入新密码">
+								<p class="help-block"></p>
+							</div>
+							<input id="resetPwdConfirm" class="btn btn-warning col-sm-2" type="submit" value="确认重置" />
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer"></div>
+		</div>
+	</div>
+</div>
+<!-- Modal End -->
+
+
 <script src="adminex/js/jquery-1.10.2.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script src="adminex/js/jquery-ui-1.9.2.custom.min.js"></script>
@@ -120,6 +162,7 @@
 <!--common scripts for all pages-->
 <script src="adminex/js/scripts.js"></script>
 <script src="js/jquery-confirm.js"></script>
+<script src="js/jquery.base64.js"></script>
 
 <!-- Custom JS -->
 <script src="js/userDetail.js"></script>

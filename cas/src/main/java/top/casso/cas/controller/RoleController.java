@@ -28,7 +28,7 @@ public class RoleController {
 	@Autowired
 	private IRoleService roleService;
 	
-	@RequestMapping("/manager")
+	@RequestMapping("/manage")
 	public String toRoleManager(Model model, HttpSession session, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "4") int size) {
 		PageInfo<Role> pageInfo = null;
 		try {
@@ -44,8 +44,8 @@ public class RoleController {
 		model.addAttribute("totals", pageInfo.getTotal());
 		model.addAttribute("totalPages", pageInfo.getPages());
 		model.addAttribute("pageIndex", page);
-		model.addAttribute("url", "role/manager?");
-		return "role/roleManager";
+		model.addAttribute("url", "services/role/manage?");
+		return "services/role/roleManage";
 	}
 	
 	@RequestMapping("/search")
@@ -62,11 +62,11 @@ public class RoleController {
 
 		List<Role> roleList = pageInfo.getList();
 		model.addAttribute("roleList", roleList);
-		model.addAttribute("total_mine", pageInfo.getTotal());
-		model.addAttribute("pageTotal", pageInfo.getPages());
+		model.addAttribute("totals", pageInfo.getTotal());
+		model.addAttribute("totalPages", pageInfo.getPages());
 		model.addAttribute("pageIndex", page);
-		model.addAttribute("url", "role/search?cName=" + cName + "&cName=" + eName + "&");
-		return "role/roleManager";
+		model.addAttribute("url", "services/role/search?cName=" + cName + "&cName=" + eName + "&");
+		return "services/role/roleManage";
 	}
 	
 	@RequestMapping("/detail/{roleUuid}")
@@ -80,7 +80,7 @@ public class RoleController {
 			return "error";
 		}
 		model.addAttribute("role", role);
-		return "role/roleDetail";
+		return "services/role/roleDetail";
 	}
 	
 	@RequestMapping("/delete/{roleUuid}")
@@ -99,7 +99,7 @@ public class RoleController {
 	
 	@RequestMapping("/toAddRole")
 	public String toAddRole() {
-		return "role/addRole";
+		return "services/role/addRole";
 	}
 	
 	@RequestMapping("/addRole")
@@ -111,7 +111,7 @@ public class RoleController {
 			try {
 				roleService.insert(role);
 				model.addAttribute("role", role);
-				return "role/roleDetail";
+				return "redirect:/services/role/detail/" + role.getUuid();
 			} catch (RoleException e) {
 				e.printStackTrace();
 				model.addAttribute("msg", e.getMessage());
@@ -131,7 +131,7 @@ public class RoleController {
 			return "error";
 		}
 		model.addAttribute("role", role);
-		return "role/updateRole";
+		return "services/role/updateRole";
 	}
 	
 	@RequestMapping("/update")
@@ -147,7 +147,7 @@ public class RoleController {
 		//取出最新的资源的集合
 		model.addAttribute("role", role);
 		
-		return "role/roleDetail";
+		return "redirect:/services/role/detail/" + role.getUuid();
 	}
 	
 	@RequestMapping("/checkRoleENameUnique/{eName}")

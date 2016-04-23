@@ -4,7 +4,7 @@
 		<a id="casso" href="https://www.casso.top" title="go to casso home page"></a>
 		<div id="copyright">
 			<br>
-			<p>Copyright &copy; 2015 - 2016 YIHEIDAODI, Inc. All rights reserved.</p>
+			<p>Copyright &copy; 2015 - 2016 YIHEIDAODI. All rights reserved.</p>
 			<p>Powered by 王豫宁 兰州理工大学 计算机与通信学院 软件工程12级1班</p>
 		</div>
 	</div>

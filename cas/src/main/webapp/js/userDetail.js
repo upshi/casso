@@ -1,6 +1,38 @@
 $(function() {
+	$('#resetPwd').on('click', function(){
+		$('#resetPwdModal').modal();
+	});
 	
+	$('#resetPwdConfirm').on('click', function(){
+		if(checkPassword()) {
+			handleBeforeSubmit();
+			return true;
+		}
+		return false;
+	});
 })
+
+//提交前处理
+function handleBeforeSubmit() {
+	$.base64.utf8encode = true;
+	var $password = $('#password');
+	$password.val( $.base64('encode', $password.val()) );
+}
+
+function checkPassword() {
+	var password = $('#password').val();
+	if(password == null || $.trim(password).length < 6) {
+		$('#passwordGroup').removeClass('has-success');
+		$('#passwordGroup').addClass('has-error');
+		$('#passwordGroup .help-block').html('请输入至少6位密码');
+		return false;
+	} else {
+		$('#passwordGroup').removeClass('has-error');
+		$('#passwordGroup').addClass('has-success');
+		$('#passwordGroup .help-block').html('');
+		return true;
+	}
+}
 
 function deleteUser(userUuid) {
 	$.confirm({

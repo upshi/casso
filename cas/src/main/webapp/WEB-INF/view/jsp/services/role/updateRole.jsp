@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -7,42 +7,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<base href="<%=basePath%>">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<link rel="shortcut icon" href="assets/images/favicon.ico">
-
-<title>融圳保本理财系统</title>
-
-<link href="assets/adminex/css/style.css" rel="stylesheet">
-<link href="assets/adminex/css/style-responsive.css" rel="stylesheet">
-
-<!-- Custom Style -->
-<link href="assets/css/common.css" rel="stylesheet" type="text/css">
-<link href="static/css/updateRole.css" rel="stylesheet" type="text/css">
+<base href="<%=basePath %>">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link href="adminex/css/style.css"  rel="stylesheet" />
+<link href="adminex/css/style-responsive.css"  rel="stylesheet" />
+<link href="css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
+<link href="css/services/footer.css"  rel="stylesheet" />
+<title>角色管理</title>
 </head>
-<body class="sticky-header">
-	<section> <!-- 左侧导航栏  开始 -->
-		<div><%@ include file="/include/left-side.jsp"%></div>
-		<!-- 左侧导航栏  结束--> <!-- 主要内容  开始-->
-		<div class="main-content">
-			<!-- 头部  开始-->
-			<div><%@ include file="/include/header.jsp"%></div>
-			<!-- 头部  结束 -->
-	
-			<!-- 页面标题	开始 -->
-			<div class="page-heading"></div>
-			<!-- 页面标题	结束-->
-	
+<body class="horizontal-menu-page">
+	<section>
+		<%@include file="../includes/header.jsp"%>
+		<h1>
+			角色管理
+		</h1>
 			<!--页面主体  开始-->
 			<div class="wrapper">
 				<div class="col-lg-12">
 					<section class="panel">
 						<header class="panel-heading"> 编辑角色信息 </header>
 						<div class="panel-body">
-							<form id="form" class="form-horizontal" method="post" action="role/update" role="form">
+							<form id="form" class="form-horizontal" method="post" action="services/role/update" role="form">
 								<input type="hidden" class="form-control" id="uuid" name="uuid" value="${role.uuid}">
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 								<br>
 								<div class="form-group" id="cNameGroup">
 									<label for="cName" class="col-sm-3 control-label">角色中文名&nbsp;*</label>
@@ -69,9 +56,7 @@
 								<br>
 								<div class="panel-body">
 									<label class="col-sm-3 control-label"></label>
-									<sec:authorize access="hasRole('ROLE_ec7aa29f5d854d07abe547e3f15fb64a')">	
-										<button class="btn btn-primary" type="submit" id="submit">保存</button>
-									</sec:authorize>
+									<button class="btn btn-primary" type="submit" id="submit">保存</button>
 								</div>
 							</form>
 						</div>
@@ -80,26 +65,22 @@
 			</div>
 	
 			<!--页脚区域  开始-->
-			<div><%@ include file="/include/footer.jsp"%></div>
-			<!--页脚区域  结束-->
-		</div>
+		<div><%@ include file="../includes/footer.jsp"%></div>
+		<!--页脚区域  结束-->
 	</section>
-	
-	
-	<!-- Placed js at the end of the document so the pages load faster -->
-	<script src="assets/adminex/js/jquery-1.10.2.min.js"></script>
-	<script src="assets/adminex/js/jquery-ui-1.9.2.custom.min.js"></script>
-	<script src="assets/adminex/js/jquery-migrate-1.2.1.min.js"></script>
-	<script src="assets/adminex/js/bootstrap.min.js"></script>
-	<script src="assets/adminex/js/modernizr.min.js"></script>
-	<script src="assets/adminex/js/jquery.nicescroll.js"></script>
-	<script src="assets/js/jquery-confirm.js"></script>
-	<script src="assets/js/jquery.base64.js"></script>
 
-	<!--common scripts for all pages-->
-	<script src="assets/adminex/js/scripts.js"></script>
-	<!-- Custom JS -->
-	<script src="assets/js/updateRole.js"></script>
+<script src="adminex/js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="adminex/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="adminex/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="adminex/js/bootstrap.min.js"></script>
+<script src="adminex/js/modernizr.min.js"></script>
+<script src="adminex/js/jquery.nicescroll.js"></script>
+<script src="js/jquery-confirm.js"></script>
+
+<!--common scripts for all pages-->
+<script src="adminex/js/scripts.js"></script>
+<script src="js/roleManage.js"></script>
+
 </body>
-
 </html>

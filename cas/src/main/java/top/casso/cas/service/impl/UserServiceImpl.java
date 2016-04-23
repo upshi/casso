@@ -12,7 +12,10 @@ import top.casso.cas.model.User;
 import top.casso.cas.model.UserRole;
 import top.casso.cas.service.IUserService;
 import top.casso.cas.util.StringUtil;
+import top.casso.cas.util.UploadObject;
+import top.casso.cas.util.UploadUtil;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -33,12 +36,26 @@ public class UserServiceImpl implements IUserService {
 		}
 	}
 
-	public int insert(User record) throws UserException {
+	public int insert(User record, UploadObject uo) throws UserException {
+		int result = 0;
 		try {
-			return userMapper.insert(record);
+			result = userMapper.insert(record);
 		} catch (Exception e) {
 			throw new UserException(e.getMessage());
 		}
+		
+		String msg = null;
+		try {
+			msg = UploadUtil.uploadImage(uo.getRemotePath(), uo.getInputStream());
+		} catch (Exception e) {
+			throw new UserException(e.getCause());
+		}
+		JSONObject json = JSONObject.parseObject(msg);
+		Integer code = (Integer) json.get("code");
+		if(code != 0) {
+			throw new UserException("文件上传失败");
+		}
+		return result;
 	}
 
 	public int insertSelective(User record) throws UserException {
@@ -87,6 +104,10 @@ public class UserServiceImpl implements IUserService {
 		list = userMapper.selectByCondition(user);
 		PageInfo<User> pageInfo = new PageInfo<User>(list);
 		return pageInfo;
+	}
+
+	public User selectByUserName(String userName) {
+		return userMapper.selectByUserName(userName);
 	}
 
 }

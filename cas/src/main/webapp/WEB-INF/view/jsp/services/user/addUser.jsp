@@ -32,31 +32,25 @@
 								<div class="form-group" id="userNameGroup">
 									<label for="userName" class="col-sm-3 control-label">用户名&nbsp;*</label>
 	                                <div class="col-lg-3">
-	                                    <div class="iconic-input right">
-	                                        <input type="text" class="form-control" id="userName" name="userName" placeholder="请输入用户名">
-	                                        <p class="help-block"></p>
-	                                    </div>
-	                                </div>
+										<input type="text" class="form-control" id="userName" name="userName" placeholder="请输入用户名">
+	                                    <p class="help-block"></p>
+									</div>
 								</div>
 					
 								<div class="form-group" id="passwordGroup">
 									<label for="password" class="col-sm-3 control-label">初始密码&nbsp;*</label>
 	                                <div class="col-lg-3">
-	                                    <div class="iconic-input right">
-	                                        <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
-	                                        <p class="help-block"></p>
-	                                    </div>
-	                                </div>
+										<input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+	                                    <p class="help-block"></p>
+									</div>
 								</div>
 								
 								<div class="form-group" id="nameGroup">
 									<label for="name" class="col-sm-3 control-label">姓名&nbsp;*</label>
-									<div class="col-lg-3">
-	                                    <div class="iconic-input right">
-											<input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名">
-	                                        <p class="help-block"></p>
-	                                    </div>
-	                                </div>
+	                                <div class="col-lg-3">
+										<input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名">
+	                                    <p class="help-block"></p>
+									</div>
 								</div>
 								
 								<div class="form-group">
@@ -75,69 +69,75 @@
 									</div>
 								</div>
 								
-								<div class="form-group">
+								<div class="form-group" id="idNoGroup">
 									<label for="telephone" class="col-sm-3 control-label">身份证号&nbsp;&nbsp;</label>
-									<div class="col-sm-3">
-										<input type="text" class="form-control" id="idNo" value=" " name="idNo" placeholder="请输入身份证号">
+									<div class="col-lg-3">
+										<input type="text" class="form-control" id="idNo" name="idNo" placeholder="请输入身份证号">
+	                                    <p class="help-block"></p>
 									</div>
 								</div>
 								
-								<div class="form-group">
+								<div class="form-group" id="phoneGroup">
 									<label for="mobilePhone" class="col-sm-3 control-label">手机号码&nbsp;&nbsp;</label>
-									<div class="col-sm-3">
-										<input type="text" class="form-control" id="phone" value=" " name="phone" placeholder="请输入手机号">
+									<div class="col-lg-3">
+										<input type="text" class="form-control" id="phone" name="phone" placeholder="请输入手机号">
+	                                    <p class="help-block"></p>
 									</div>
 								</div>
 								
-								<div class="form-group">
+								<div class="form-group" id="emailGroup">
 									<label for="email" class="col-sm-3 control-label">常用邮箱&nbsp;&nbsp;</label>
-									<div class="col-sm-3">
-										<input type="text" class="form-control" id="email" name="email" value=" " placeholder="请输入邮箱">
+									<div class="col-lg-3">
+										<input type="text" class="form-control" id="email" name="email" placeholder="请输入邮箱">
+	                                    <p class="help-block"></p>
 									</div>
 								</div>
 								
 								<div class="form-group">
 									<label for="email" class="col-sm-3 control-label">地址&nbsp;&nbsp;</label>
 									<div class="col-sm-3">
-										<input type="text" class="form-control" name="address" value=" " placeholder="请输入地址">
+										<input type="text" class="form-control" name="address" placeholder="请输入地址">
 									</div>
 								</div>
 								
 								<div class="form-group" id="adddoc-imgGroup">
 									<label class="col-sm-3 control-label">头像</label>
 									<div class="col-sm-3">
-										<div class="iconic-input right">
-											<input type="file" id="input-id" name="file_data" />
-											<p class="help-block"></p>
-										</div>
+										<input type="file" id="input-id" name="file_data" />
+										<p class="help-block"></p>
 									</div>
 								</div>
 								
 								<div class="form-group">
 									<label for="email" class="col-sm-3 control-label">教育背景&nbsp;&nbsp;</label>
 									<div class="col-sm-3">
-										<input type="text" class="form-control" name="eduBackground" value=" " placeholder="">
+										<select class="form-control" name="eduBackground">
+											<option value="专科及以下">专科及以下</option>
+											<option value="本科">本科</option>
+											<option value="硕士">硕士</option>
+											<option value="博士">博士及以上</option>
+										</select>
 									</div>
 								</div>
 								
 								<div class="form-group">
 									<label for="email" class="col-sm-3 control-label">部门&nbsp;&nbsp;</label>
 									<div class="col-sm-3">
-										<input type="text" class="form-control" name="department" value=" " placeholder="">
+										<input type="text" class="form-control" name="department" placeholder="">
 									</div>
 								</div>
 								
 								<div class="form-group">
 									<label for="email" class="col-sm-3 control-label">职务&nbsp;&nbsp;</label>
 									<div class="col-sm-3">
-										<input type="text" class="form-control" name="title" value=" " placeholder="">
+										<input type="text" class="form-control" name="title" placeholder="">
 									</div>
 								</div>
 								
 								<div class="form-group">
 									<label for="email" class="col-sm-3 control-label">描述&nbsp;&nbsp;</label>
 									<div class="col-sm-3">
-										<textarea class="form-control" name="description" value=" " placeholder=""></textarea>
+										<textarea class="form-control" name="description" placeholder=""></textarea>
 									</div>
 								</div>
 					

@@ -10,14 +10,17 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.jasig.cas.authentication.handler.DefaultPasswordEncoder;
+import org.jasig.cas.authentication.handler.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import top.casso.cas.exception.UserException;
 import top.casso.cas.exception.UserRoleException;
@@ -28,6 +31,7 @@ import top.casso.cas.service.IRoleService;
 import top.casso.cas.service.IUserRoleService;
 import top.casso.cas.service.IUserService;
 import top.casso.cas.util.UUIDGenerator;
+import top.casso.cas.util.UploadObject;
 import top.casso.cas.vo.UserRoleVO;
 
 import com.alibaba.fastjson.util.Base64;
@@ -46,7 +50,7 @@ public class UserController {
 	@Autowired
 	private IUserRoleService userRoleService;
 
-	private static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	private static PasswordEncoder passwordEncoder = new DefaultPasswordEncoder("SHA-256");
 
 	@RequestMapping("/manage")
 	public String userManager(HttpServletRequest request, Model model, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "4") int size) {
@@ -108,7 +112,7 @@ public class UserController {
 	}
 
 	@RequestMapping("/addUser")
-	public String addUser(User user, Model model) {
+	public String addUser(User user, Model model, HttpServletRequest request) {
 		user.setUuid(UUIDGenerator.generateUUID());
 		// Base64解码得到原始密码
 		String rawPassword = new String(Base64.decodeFast(user.getPassword()));
@@ -117,8 +121,19 @@ public class UserController {
 		user.setPassword(encodedPassword);
 		user.setState(User.IN_USE);
 		
+		//处理上传图片的逻辑
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		MultipartFile multipartFile = multipartRequest.getFile("file_data");
+		//如果size大于0,则用户上传了图片
+		UploadObject uo = null;
+		if(multipartFile.getSize() > 0) {
+			String remoteBasePath = UploadObject.USER_PHOTO_BASE_PATH;
+			uo = new UploadObject(user.getUuid(), remoteBasePath, multipartFile);
+			user.setPhoto(UploadObject.DOMAIN + uo.getRemotePath());
+		}
+		
 		try {
-			userService.insert(user);
+			userService.insert(user, uo);
 		} catch (UserException e) {
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
@@ -141,6 +156,24 @@ public class UserController {
 			map.put("result", e.getMessage());
 		}
 		return map;
+	}
+	
+	@RequestMapping("/resetPwd")
+	public String resetPwd(User user, Model model) {
+		// Base64解码得到原始密码
+		String rawPassword = new String(Base64.decodeFast(user.getPassword()));
+		// BCrypt加密密码
+		String encodedPassword = passwordEncoder.encode(rawPassword);
+		user.setPassword(encodedPassword);
+		try {
+			userService.updateByPrimaryKeySelective(user);
+		} catch (UserException e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "error";
+		}
+		model.addAttribute("user", user);
+		return "redirect:/services/user/detail/" + user.getUuid();
 	}
 
 	@RequestMapping("/detail/{userUuid}")
@@ -331,17 +364,12 @@ public class UserController {
 		return "user/userDetail";
 	}
 
-	@RequestMapping("/checkUsernameUnique/{userName}")
+	@RequestMapping("/checkUserNameUnique/{userName}")
 	@ResponseBody
-	public Map<String, Object> checkUsernameUnique(@PathVariable(value = "userName") String userName) {
+	public Map<String, Object> checkUserNameUnique(@PathVariable(value = "userName") String userName) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		User user = null;
-		try {
-			user = userService.selectByPrimaryKey(userName);
-		} catch (UserException e) {
-			e.printStackTrace();
-			map.put("result", "exist");
-		}
+		user = userService.selectByUserName(userName);
 		if (user != null) {
 			map.put("result", "exist");
 		} else {
