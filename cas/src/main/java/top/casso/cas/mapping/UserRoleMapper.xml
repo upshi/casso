@@ -53,7 +53,7 @@
   <insert id="insert" parameterType="top.casso.cas.model.UserRole" >
     insert into t_user_role (uuid, userUuid, roleUuid
       )
-    values (#{uuid,jdbcType=VARCHAR}, #{userUuid,jdbcType=VARCHAR}, #{roleUuid,jdbcType=VARCHAR}
+    values (#{uuid,jdbcType=VARCHAR}, #{user.uuid,jdbcType=VARCHAR}, #{role.uuid,jdbcType=VARCHAR}
       )
   </insert>
   
@@ -63,10 +63,10 @@
       <if test="uuid != null" >
         uuid,
       </if>
-      <if test="userUuid != null" >
+      <if test="user.uuid != null" >
         userUuid,
       </if>
-      <if test="roleUuid != null" >
+      <if test="role.uuid != null" >
         roleUuid,
       </if>
     </trim>
@@ -75,29 +75,29 @@
         #{uuid,jdbcType=VARCHAR},
       </if>
       <if test="userUuid != null" >
-        #{userUuid,jdbcType=VARCHAR},
+        #{user.uuid,jdbcType=VARCHAR},
       </if>
       <if test="roleUuid != null" >
-        #{roleUuid,jdbcType=VARCHAR},
+        #{role.uuid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="top.casso.cas.model.UserRole" >
     update t_user_role
     <set >
-      <if test="userUuid != null" >
-        userUuid = #{userUuid,jdbcType=VARCHAR},
+      <if test="user.uuid != null" >
+        userUuid = #{user.uuid,jdbcType=VARCHAR},
       </if>
-      <if test="roleUuid != null" >
-        roleUuid = #{roleUuid,jdbcType=VARCHAR},
+      <if test="role.uuid != null" >
+        roleUuid = #{role.uuid,jdbcType=VARCHAR},
       </if>
     </set>
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="top.casso.cas.model.UserRole" >
     update t_user_role
-    set userUuid = #{userUuid,jdbcType=VARCHAR},
-      roleUuid = #{roleUuid,jdbcType=VARCHAR}
+    set userUuid = #{user.uuid,jdbcType=VARCHAR},
+      roleUuid = #{role.uuid,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
 </mapper>

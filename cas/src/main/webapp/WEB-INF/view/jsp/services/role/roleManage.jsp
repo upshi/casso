@@ -62,8 +62,10 @@
 											</button>
 											<ul class="dropdown-menu" style="min-width: 60px">
 												<li><a href="services/role/detail/${role.uuid }">详情</a></li>
-												<li><a href="services/role/toUpdate/${role.uuid }">编辑</a></li>
-												<li><a onclick="deleteRole('${role.uuid}','${url }')">删除</a></li>
+												<c:if test="${role.eName != 'ROLE_ADMIN' && role.eName != 'ROLE_USER' }">
+													<li><a href="services/role/toUpdate/${role.uuid }">编辑</a></li>
+													<li><a onclick="deleteRole('${role.uuid}','${url }')">删除</a></li>
+												</c:if>
 											</ul>
 										</div>
 									</td>

@@ -145,9 +145,10 @@ function checkPhone() {
 			return true;
 		}
 	} else {
-		$('#phoneGroup').removeClass('has-error');
-		$('#phoneGroup .help-block').html('');
-		return true;
+		$('#phoneGroup').removeClass('has-success');
+		$('#phoneGroup').addClass('has-error');
+		$('#phoneGroup .help-block').html('请输入手机号');
+		return false;
 	}
 }
 
@@ -167,8 +168,9 @@ function checkEmail() {
 			return true;
 		}
 	} else {
-		$('#emailGroup').removeClass('has-error');
-		$('#emailGroup .help-block').html('');
-		return true;
+		$('#emailGroup').removeClass('has-success');
+		$('#emailGroup').addClass('has-error');
+		$('#emailGroup .help-block').html('请输入邮箱');
+		return false;
 	}
 }

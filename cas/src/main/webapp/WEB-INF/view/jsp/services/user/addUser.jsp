@@ -78,7 +78,7 @@
 								</div>
 								
 								<div class="form-group" id="phoneGroup">
-									<label for="mobilePhone" class="col-sm-3 control-label">手机号码&nbsp;&nbsp;</label>
+									<label for="mobilePhone" class="col-sm-3 control-label">手机号码&nbsp;*</label>
 									<div class="col-lg-3">
 										<input type="text" class="form-control" id="phone" name="phone" placeholder="请输入手机号">
 	                                    <p class="help-block"></p>
@@ -86,7 +86,7 @@
 								</div>
 								
 								<div class="form-group" id="emailGroup">
-									<label for="email" class="col-sm-3 control-label">常用邮箱&nbsp;&nbsp;</label>
+									<label for="email" class="col-sm-3 control-label">常用邮箱&nbsp;*</label>
 									<div class="col-lg-3">
 										<input type="text" class="form-control" id="email" name="email" placeholder="请输入邮箱">
 	                                    <p class="help-block"></p>

@@ -88,6 +88,18 @@ public class RoleController {
 	public Map<String, Object> roleDelte(@PathVariable(value = "roleUuid") String roleUuid) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
+			Role role = roleService.selectByPrimaryKey(roleUuid);
+			//不允许删除ROLE_ADMIN和ROLE_USER
+			if(role.geteName().equals("ROLE_ADMIN") || role.geteName().equals("ROLE_USER")) {
+				map.put("result", "failure");
+				return map;
+			}
+		} catch (RoleException e1) {
+			e1.printStackTrace();
+			map.put("result", "failure");
+			return map;
+		}
+		try {
 			roleService.deleteByPrimaryKey(roleUuid);
 			map.put("result", "success");
 		} catch (RoleException e) {
@@ -125,6 +137,10 @@ public class RoleController {
 		Role role = null;
 		try {
 			role = roleService.selectByPrimaryKey(roleUuid);
+			//不允许修改ROLE_ADMIN和ROLE_USER
+			if(role.geteName().equals("ROLE_ADMIN") || role.geteName().equals("ROLE_USER")) {
+				return "redirect:/services/role/manage";
+			}
 		} catch (RoleException e) {
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());

@@ -1,8 +1,8 @@
 //multiselect start
 
 $('#multi_select').multiSelect({
-    selectableHeader: "<input type='text' class='form-control search-input' autocomplete='off' placeholder='请输入资源名称...'>",
-    selectionHeader: "<input type='text' class='form-control search-input' autocomplete='off' placeholder='请输入资源名称...'>",
+    selectableHeader: "<input type='text' class='form-control search-input' autocomplete='off' placeholder='请输入角色名称...'>",
+    selectionHeader: "<input type='text' class='form-control search-input' autocomplete='off' placeholder='请输入角色名称...'>",
     afterInit: function (ms) {
         var that = this,
             $selectableSearch = that.$selectableUl.prev(),
