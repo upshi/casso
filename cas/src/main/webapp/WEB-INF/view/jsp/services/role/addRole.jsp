@@ -19,9 +19,6 @@
 <body class="horizontal-menu-page">
 	<section>
 		<%@include file="../includes/header.jsp"%>
-		<h1>
-			添加角色
-		</h1>
 			<!--页面主体  开始-->
 			<div class="wrapper">
 				<div class="col-lg-12">
@@ -32,22 +29,18 @@
 								<br>
 								<div class="form-group" id="cNameGroup">
 									<label for="name" class="col-sm-3 control-label">角色中文名&nbsp;*</label>
-									<div class="col-sm-4">
-										<div class="iconic-input right">
-											<input type="text" class="form-control" id="cName" name="cName" placeholder="请输入角色中文名">
-	                                        <p class="help-block"></p>
-	                                    </div>
-									</div>
+									<div class="col-lg-3">
+										<input type="text" class="form-control" id="cName" name="cName" placeholder="请输入角色中文名">
+                                        <p class="help-block"></p>
+                                    </div>
 								</div>
 								
 								<div class="form-group" id="eNameGroup">
 									<label for="sn" class="col-sm-3 control-label">角色英文名&nbsp;*</label>
-									<div class="col-sm-4">
-										<div class="iconic-input right">
-											<input type="text" class="form-control" id="eName" name="eName" placeholder="请输入角色英文名" value="ROLE_">
-	                                        <p class="help-block"></p>
-	                                    </div>
-									</div>
+									<div class="col-lg-3">
+										<input type="text" class="form-control" id="eName" name="eName" placeholder="请输入角色英文名" value="ROLE_">
+                                        <p class="help-block"></p>
+                                    </div>
 								</div>
 					
 								<div class="form-group">

@@ -29,5 +29,7 @@ public interface IUserService {
     PageInfo<User> selectByConditionAndPaging(User user, int page, int rows) throws UserException;
 
 	User selectByUserName(String userName);
+
+	void updatePhoto(User user, UploadObject uo) throws UserException;
 	
 }

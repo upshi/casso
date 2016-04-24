@@ -101,7 +101,7 @@
 								</div>
 								
 								<div class="form-group" id="adddoc-imgGroup">
-									<label class="col-sm-3 control-label">头像</label>
+									<label class="col-sm-3 control-label">照片</label>
 									<div class="col-sm-3">
 										<input type="file" id="input-id" name="file_data" />
 										<p class="help-block"></p>

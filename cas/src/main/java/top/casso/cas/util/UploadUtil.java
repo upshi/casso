@@ -35,5 +35,11 @@ public class UploadUtil {
 		String result = cos.uploadFile(BUCKET_NAME, remotePath, inputStream);
 		return result;
 	}
+	
+	public static String deleteImage(String remotePath) throws Exception {
+		CosCloud cos = new CosCloud(APP_ID, SECRET_ID, SECRET_KEY);
+		String result = cos.deleteFile(BUCKET_NAME, remotePath);
+		return result;
+	}
 
 }

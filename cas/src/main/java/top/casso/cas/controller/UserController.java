@@ -76,13 +76,14 @@ public class UserController {
 	public String search(Model model, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "4") int size, 
 									  @RequestParam(defaultValue = "") String userName, @RequestParam(defaultValue = "") String name,
 									  @RequestParam(defaultValue = "") String sex, @RequestParam(defaultValue = "") String phone,
-									  @RequestParam(defaultValue = "") String department ) {
+									  @RequestParam(defaultValue = "-1") String department, @RequestParam(defaultValue = "") String state) {
 		User user = new User();
 		user.setUserName(userName);
 		user.setName(name);
 		user.setSex(sex);
 		user.setPhone(phone);
 		user.setDepartment(department);
+		user.setState(Integer.parseInt(state));
 		
 		PageInfo<User> pageInfo = null;
 		try {
@@ -102,7 +103,8 @@ public class UserController {
 														"&name=" + name + 
 														"&sex=" + sex +
 														"&phone=" + phone +
-														"&department=" + department + "&");
+														"&department=" + department +
+														"&state=" + state + "&");
 		return "services/user/userManage";
 	}
 
@@ -128,7 +130,7 @@ public class UserController {
 		UploadObject uo = null;
 		if(multipartFile.getSize() > 0) {
 			String remoteBasePath = UploadObject.USER_PHOTO_BASE_PATH;
-			uo = new UploadObject(user.getUuid(), remoteBasePath, multipartFile);
+			uo = new UploadObject(UUIDGenerator.generateUUID(), remoteBasePath, multipartFile);
 			user.setPhoto(UploadObject.DOMAIN + uo.getRemotePath());
 		}
 		
@@ -158,8 +160,24 @@ public class UserController {
 		return map;
 	}
 	
+	@RequestMapping("/updateState")
+	@ResponseBody
+	public Map<String, Object> updateState(User user) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			userService.updateByPrimaryKeySelective(user);
+			map.put("result", "success");
+		} catch (UserException e) {
+			e.printStackTrace();
+			map.put("result", e.getMessage());
+		}
+		return map;
+	}
+	
 	@RequestMapping("/resetPwd")
-	public String resetPwd(User user, Model model) {
+	@ResponseBody
+	public Map<String, Object> resetPwd(User user, Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		// Base64解码得到原始密码
 		String rawPassword = new String(Base64.decodeFast(user.getPassword()));
 		// BCrypt加密密码
@@ -169,9 +187,38 @@ public class UserController {
 			userService.updateByPrimaryKeySelective(user);
 		} catch (UserException e) {
 			e.printStackTrace();
+			map.put("result", "failure");
+			map.put("msg", e.getCause());
+			return map;
+		}
+		map.put("result", "success");
+		return map;
+	}
+	
+	@RequestMapping("/updatePhoto")
+	public String updatePhoto(String uuid, Model model, HttpServletRequest request) {
+		User user = new User();
+		user.setUuid(uuid);
+		
+		//处理上传图片的逻辑
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		MultipartFile multipartFile = multipartRequest.getFile("file_data");
+		//如果size大于0,则用户上传了图片
+		UploadObject uo = null;
+		if(multipartFile.getSize() > 0) {
+			String remoteBasePath = UploadObject.USER_PHOTO_BASE_PATH;
+			uo = new UploadObject(UUIDGenerator.generateUUID(), remoteBasePath, multipartFile);
+			user.setPhoto(UploadObject.DOMAIN + uo.getRemotePath());
+		}
+		
+		try {
+			userService.updatePhoto(user, uo);
+		} catch (UserException e) {
+			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
 			return "error";
 		}
+
 		model.addAttribute("user", user);
 		return "redirect:/services/user/detail/" + user.getUuid();
 	}
@@ -288,7 +335,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		model.addAttribute("roleList", roleList);
 
-		return "user/allocateRole";
+		return "services/user/allocateRole";
 	}
 
 	@RequestMapping("/allocateRole")
@@ -301,8 +348,15 @@ public class UserController {
 			model.addAttribute("msg", e.getMessage());
 			return "error";
 		}
+		
 		// 新的角色的UUID的Set集合
-		HashSet<String> newRoleSet = new HashSet<String>(Arrays.asList(roleUuid));
+		HashSet<String> newRoleSet = null;
+		if(roleUuid == null || roleUuid.length == 0) {
+			newRoleSet = new HashSet<String>();
+		} else {
+			newRoleSet = new HashSet<String>(Arrays.asList(roleUuid));
+		}
+		
 		// 取出该用户已经拥有的角色
 		List<UserRole> userRoles = null;
 		try {
@@ -332,7 +386,11 @@ public class UserController {
 			newUserRoleList.add(urVo);
 		}
 		if (newUserRoleList.size() > 0) {
-			//userRoleService.insertBatchByUserRoleVO(newUserRoleList);
+			try {
+				userRoleService.insertBatchByUserRoleVO(newUserRoleList);
+			} catch (UserRoleException e) {
+				e.printStackTrace();
+			}
 		}
 
 		// 原有资源Set减去交集部分,得到删除的资源
@@ -346,7 +404,11 @@ public class UserController {
 			}
 		}
 		if (deleteUserRoleList.size() > 0) {
-			//userRoleService.deleteBatchByUuid(deleteUserRoleList);
+			try {
+				userRoleService.deleteBatchByUuid(deleteUserRoleList);
+			} catch (UserRoleException e) {
+				e.printStackTrace();
+			}
 		}
 
 		// 查询最新的用户角色信息
@@ -361,7 +423,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		model.addAttribute("userRoles", userRoles);
 
-		return "user/userDetail";
+		return "redirect:/services/user/detail/" + userUuid;
 	}
 
 	@RequestMapping("/checkUserNameUnique/{userName}")

@@ -14,14 +14,11 @@
 <link href="adminex/css/style-responsive.css"  rel="stylesheet" />
 <link href="css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
 <link href="css/services/footer.css"  rel="stylesheet" />
-<title>角色管理</title>
+<title>角色详情</title>
 </head>
 <body class="horizontal-menu-page">
 	<section>
 		<%@include file="../includes/header.jsp"%>
-		<h1>
-			角色管理
-		</h1>
 			<!--页面主体  开始-->
 			<div class="wrapper">
 				<div class="col-lg-12">
@@ -45,7 +42,7 @@
 								<br>
 								<div class="col-sm-offset-3  col-sm-20">
 									<a href="services/role/toUpdate/${role.uuid}"  class="btn btn-warning" type="button">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-									<a class="btn btn-danger" onclick="deleteRole('${role.uuid}')">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									<button class="btn btn-danger" onclick="deleteRole('${role.uuid}')">删除</button>&nbsp;&nbsp;&nbsp;&nbsp;
 									<a href="services/role/manage" class="btn btn-primary"  type="button">查看角色列表</a>
 								</div>
 							</div>
@@ -70,7 +67,7 @@
 
 <!--common scripts for all pages-->
 <script src="adminex/js/scripts.js"></script>
-<script src="js/roleManage.js"></script>
+<script src="js/roleDetail.js"></script>
 
 </body>
 </html>

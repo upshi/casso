@@ -110,4 +110,29 @@ public class UserServiceImpl implements IUserService {
 		return userMapper.selectByUserName(userName);
 	}
 
+	public void updatePhoto(User user, UploadObject uo) throws UserException {
+		String photo = userMapper.selectByPrimaryKey(user.getUuid()).getPhoto();
+		photo = photo.substring(photo.indexOf(UploadObject.USER_PHOTO_BASE_PATH), photo.length());
+		
+		try {
+			userMapper.updateByPrimaryKeySelective(user);
+		} catch (Exception e) {
+			throw new UserException(e.getMessage());
+		}
+		
+		String msg = null;
+		try {
+			//先删除,再上传
+			String temp = UploadUtil.deleteImage(photo);
+			msg = UploadUtil.uploadImage(uo.getRemotePath(), uo.getInputStream());
+		} catch (Exception e) {
+			throw new UserException(e.getCause());
+		}
+		JSONObject json = JSONObject.parseObject(msg);
+		Integer code = (Integer) json.get("code");
+		if(code != 0) {
+			throw new UserException("文件上传失败");
+		}
+	}
+
 }

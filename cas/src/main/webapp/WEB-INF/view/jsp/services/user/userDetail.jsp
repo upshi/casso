@@ -14,6 +14,9 @@
 <link href="adminex/css/style-responsive.css" rel="stylesheet" />
 <link href="css/services/footer.css"  rel="stylesheet" />
 <link href="css/jquery-confirm.css" rel="stylesheet">
+<link href="css/zoom.css" rel="stylesheet">
+<!-- fileinput组件样式 -->
+<link href="adminex/fileinput/fileinput.min.css" rel="stylesheet">
 <title>用户详情</title>
 </head>
 <body class="horizontal-menu-page">
@@ -76,14 +79,14 @@
 							
 							<div class="row">
 								<br>
-								<label class="col-sm-3 text-right">头像:</label> <img src="${user.photo }" height="50" width="50" />
+								<label class="col-sm-3 text-right">照片:</label> <img data-action="zoom" src="${user.photo }" height="100" width="100" />
 								<br><br>
 							</div>
 							
 							<div class="row">
 								<label class="col-sm-3 text-right">状态:</label>
 								<c:if test="${user.state == 0}"><label class="col-sm-3">已删除</label></c:if>
-								<c:if test="${user.state == 1}"><label class="col-sm-3">已冻结</label></c:if>
+								<c:if test="${user.state == 1}"><label class="col-sm-3">已锁定</label></c:if>
 								<c:if test="${user.state == 2}"><label class="col-sm-3">使用中</label></c:if>
 							</div>
 							
@@ -98,12 +101,19 @@
 							<br><br><br>
 							<div class="row">
 								<br>
-								<div class="col-sm-offset-3 col-sm-20">
-									<a href="services/user/toUpdate/${user.uuid}"  class="btn btn-warning" type="button">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-									<a href="services/user/toAllocateRole/${user.uuid}"  class="btn btn-info" type="button">分配角色</a>&nbsp;&nbsp;&nbsp;&nbsp;
-									<button id="resetPwd" uuid="${user.uuid}" class="btn btn-warning" type="button">重置密码</button>&nbsp;&nbsp;&nbsp;&nbsp;
-									<button uuid="${user.uuid}" class="btn btn-info" type="button">更改头像</button>&nbsp;&nbsp;&nbsp;&nbsp;
-									<a class="btn btn-danger" onclick="deleteUser('${user.uuid}')">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+								<div class="col-sm-offset-2 col-sm-20">
+									<a href="services/user/toUpdate/${user.uuid}"  class="btn btn-success" type="button">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									<a href="services/user/toAllocateRole/${user.uuid}"  class="btn btn-success" type="button">分配角色</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									<button id="resetPwd" uuid="${user.uuid}" class="btn btn-success" type="button">重置密码</button>&nbsp;&nbsp;&nbsp;&nbsp;
+									<button id="updatePhoto" uuid="${user.uuid}" class="btn btn-success" type="button">更改照片</button>&nbsp;&nbsp;&nbsp;&nbsp;
+									<c:if test="${user.state == 1}" >
+										<button id="unlock" uuid="${user.uuid}" class="btn btn-warning" type="button">解锁用户</button>&nbsp;&nbsp;&nbsp;&nbsp;
+										<a class="btn btn-danger" onclick="deleteUser('${user.uuid}')">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									</c:if>
+									<c:if test="${user.state == 2}" >
+										<button id="lock" uuid="${user.uuid}" class="btn btn-warning" type="button">锁定用户</button>&nbsp;&nbsp;&nbsp;&nbsp;
+										<a class="btn btn-danger" onclick="deleteUser('${user.uuid}')">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									</c:if>
 									<a href="services/user/manage" class="btn btn-primary"  type="button">查看人员列表</a>
 								</div>
 							</div>
@@ -130,19 +140,16 @@
 				</h4>
 			</div>
 			<div class="modal-body row">
-				<form action="services/user/resetPwd" method="post" class="form-horizontal adminex-form" role="form">
-					<input type="hidden" name="uuid" value="${user.uuid }" />
-					<div class="form-group" id="passwordGroup">
-						<div class="col-sm-12">
-							<label for="password" class="col-sm-2 control-label">重置密码&nbsp;*</label>
-							<div class="col-lg-7">
-								<input type="password" class="form-control" id="password" name="password" placeholder="请输入新密码">
-								<p class="help-block"></p>
-							</div>
-							<input id="resetPwdConfirm" class="btn btn-warning col-sm-2" type="submit" value="确认重置" />
+				<div class="form-group" id="passwordGroup">
+					<div class="col-sm-12 form-horizontal adminex-form">
+						<label for="password" class="col-sm-2 control-label">新密码&nbsp;*</label>
+						<div class="col-lg-7">
+							<input type="password" uuid="${user.uuid }" class="form-control" id="password" name="password" placeholder="请输入新密码">
+							<p class="help-block"></p>
 						</div>
+						<button id="resetPwdConfirm" class="btn btn-warning col-sm-2" type="submit">确认重置</button>
 					</div>
-				</form>
+				</div>
 			</div>
 			<div class="modal-footer"></div>
 		</div>
@@ -150,6 +157,37 @@
 </div>
 <!-- Modal End -->
 
+<!-- Modal Start -->
+<div class="modal fade" id="updatePhotoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title text-left">
+					 更改照片
+				</h4>
+			</div>
+			<div class="modal-body row">
+				<form class="form-horizontal adminex-form" method="POST" action="services/user/updatePhoto" enctype="multipart/form-data">
+					<input type="hidden" name="uuid" value="${user.uuid }" />
+					<div class="form-group" id="photoGroup">
+						<label class="col-sm-2 control-label">请选择</label>
+						<div class="col-sm-7">
+							<input type="file" id="input-id" name="file_data" />
+							<p class="help-block"></p>
+						</div>
+					</div>
+					<label class="col-sm-3 control-label"></label>
+					<button id="updatePhotoConfirm" class="btn btn-warning col-sm-2" type="submit">确定</button>
+				</form>
+			</div>
+			<div class="modal-footer"></div>
+		</div>
+	</div>
+</div>
+<!-- Modal End -->
 
 <script src="adminex/js/jquery-1.10.2.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
@@ -163,6 +201,15 @@
 <script src="adminex/js/scripts.js"></script>
 <script src="js/jquery-confirm.js"></script>
 <script src="js/jquery.base64.js"></script>
+
+<!-- fileinput组件 -->
+<script type="text/javascript" src="adminex/fileinput/fileinput.min.js"></script>
+<script type="text/javascript" src="adminex/fileinput/fileinput_locale_zh.js"></script>
+<script src="js/file.js"></script>
+
+<!-- Zoom -->
+<script src="js/zoom.min.js"></script>
+<script src="js/transition.js"></script>
 
 <!-- Custom JS -->
 <script src="js/userDetail.js"></script>

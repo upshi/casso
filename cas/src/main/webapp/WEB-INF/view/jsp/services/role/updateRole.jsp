@@ -14,14 +14,11 @@
 <link href="adminex/css/style-responsive.css"  rel="stylesheet" />
 <link href="css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
 <link href="css/services/footer.css"  rel="stylesheet" />
-<title>角色管理</title>
+<title>编辑角色</title>
 </head>
 <body class="horizontal-menu-page">
 	<section>
 		<%@include file="../includes/header.jsp"%>
-		<h1>
-			角色管理
-		</h1>
 			<!--页面主体  开始-->
 			<div class="wrapper">
 				<div class="col-lg-12">
@@ -80,7 +77,7 @@
 
 <!--common scripts for all pages-->
 <script src="adminex/js/scripts.js"></script>
-<script src="js/roleManage.js"></script>
+<script src="js/updateRole.js"></script>
 
 </body>
 </html>

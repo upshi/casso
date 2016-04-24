@@ -44,6 +44,14 @@
 			                </select>
 						</div>
 						<div class="form-group">
+			                <select name="state" class="form-control">
+			                	<option value="-1">状态</option>
+			                	<option value="0">已删除</option>
+			                	<option value="1">已锁定</option>
+			                	<option value="2">使用中</option>
+			                </select>
+						</div>
+						<div class="form-group">
 			                <input class="form-control" name="phone" type="text" placeholder="请输入手机号" />
 						</div>
 						<div class="form-group">
@@ -63,6 +71,7 @@
 								<th class="text-center">性别</th>
 								<th class="text-center">手机号码</th>
 								<th class="text-center">部门</th>
+								<th class="text-center">状态</th>
 								<th class="text-center">操作</th>
 							</tr>
 						</thead>
@@ -75,6 +84,11 @@
 									<td>${user.sex }</td>
 									<td>${user.phone }</td>
 									<td>${user.department }</td>
+									<td>
+										<c:if test="${user.state == 0}">已删除</c:if>
+										<c:if test="${user.state == 1}">已锁定</c:if>
+										<c:if test="${user.state == 2}">使用中</c:if>
+									</td>
 									<td>
 										<div class="btn-group">
 											<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

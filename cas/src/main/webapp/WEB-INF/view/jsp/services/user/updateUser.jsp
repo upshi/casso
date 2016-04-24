@@ -16,7 +16,7 @@
 <link href="css/jquery-confirm.css" rel="stylesheet">
 <!-- fileinput组件样式 -->
 <link href="adminex/fileinput/fileinput.min.css" rel="stylesheet">
-<title>修改用户</title>
+<title>编辑用户</title>
 </head>
 <body class="horizontal-menu-page">
 	<section>
@@ -25,7 +25,7 @@
 			<div class="wrapper">
 				<div class="col-lg-12">
 					<section class="panel">
-						<header class="panel-heading"> 修改用户 </header>
+						<header class="panel-heading"> 编辑用户 </header>
 						<div class="panel-body">
 							<form id="form" class="form-horizontal" method="post" action="services/user/update" enctype="multipart/form-data">
 								<input type="hidden" name="uuid" value="${user.uuid }" />
