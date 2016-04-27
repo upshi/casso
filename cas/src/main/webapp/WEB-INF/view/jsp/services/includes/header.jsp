@@ -26,11 +26,11 @@
 						</div>
 					</form>
 				</li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" src="<c:url value="/adminex/images/photos/user-avatar.png" />" /> John Doe <b class="caret"></b></a>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" src="${loginUser.photo }" /> 欢迎您,${loginUser.name } <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Profile</a></li>
-						<li><a href="#">Settings</a></li>
-						<li><a id="nav-logout" href="<c:url value="/logout" />" url="<c:url value="/services/logout.html" />">Log Out</a></li>
+						<li><a href="#">个人信息</a></li>
+						<li><a href="#">修改密码</a></li>
+						<li><a id="nav-logout" href="<c:url value="/logout" />" url="<c:url value="/services/logout.html" />">登出</a></li>
 					</ul></li>
 			</ul>
 		</div>

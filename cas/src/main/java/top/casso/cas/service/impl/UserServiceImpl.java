@@ -138,7 +138,7 @@ public class UserServiceImpl implements IUserService {
 		String msg = null;
 		try {
 			//先删除,再上传
-			String temp = UploadUtil.deleteImage(photo);
+			UploadUtil.deleteImage(photo);
 			msg = UploadUtil.uploadImage(uo.getRemotePath(), uo.getInputStream());
 		} catch (Exception e) {
 			throw new UserException(e.getCause());
