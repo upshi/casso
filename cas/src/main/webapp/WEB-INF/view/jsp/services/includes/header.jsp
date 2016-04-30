@@ -28,7 +28,7 @@
 				</li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" src="${loginUser.photo }" /> 欢迎您,${loginUser.name } <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">个人信息</a></li>
+						<li><a href="self/info">个人信息</a></li>
 						<li><a href="#">修改密码</a></li>
 						<li><a id="nav-logout" href="<c:url value="/logout" />" url="<c:url value="/services/logout.html" />">登出</a></li>
 					</ul></li>

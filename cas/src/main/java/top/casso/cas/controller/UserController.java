@@ -118,7 +118,7 @@ public class UserController {
 		user.setUuid(UUIDGenerator.generateUUID());
 		// Base64解码得到原始密码
 		String rawPassword = new String(Base64.decodeFast(user.getPassword()));
-		// BCrypt加密密码
+		// SHA-256加密密码
 		String encodedPassword = passwordEncoder.encode(rawPassword);
 		user.setPassword(encodedPassword);
 		user.setState(User.IN_USE);
@@ -180,7 +180,7 @@ public class UserController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		// Base64解码得到原始密码
 		String rawPassword = new String(Base64.decodeFast(user.getPassword()));
-		// BCrypt加密密码
+		// SHA-256加密密码
 		String encodedPassword = passwordEncoder.encode(rawPassword);
 		user.setPassword(encodedPassword);
 		try {

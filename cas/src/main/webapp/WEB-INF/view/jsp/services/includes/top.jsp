@@ -32,7 +32,7 @@
 <head>
 <title><spring:message code="${pageTitle}" text="Logged Out" /></title>
 <meta name="version" content="<%=org.jasig.cas.CasVersion.getVersion()%>" />
-<link rel="icon" href="<c:url value="/favicon.ico" />" type="image/x-icon" />
+<link rel="icon" href="<c:url value="/images/favicon.ico" />" type="image/x-icon" />
 
 <link href="<c:url value="/adminex/css/style.css" />"  rel="stylesheet" />
 <link href="<c:url value="/adminex/css/style-responsive.css" />"  rel="stylesheet" />
@@ -93,8 +93,8 @@ span {
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" src="<c:url value="<%=loginUser.getPhoto() %>" />" /> 欢迎您 ,<%=loginUser.getName() %> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">个人信息</a></li>
-                            <li><a href="#">修改密码</a></li>
+                            <li><a href="<c:url value="/self/info" />">个人信息</a></li>
+                            <li><a href="">修改密码</a></li>
                             <li><a id="nav-logout" href="<c:url value="/logout" />" url="<c:url value="/services/logout.html" />">登出</a></li>
                         </ul>
                     </li>

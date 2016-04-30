@@ -9,7 +9,7 @@
 <head>
 <base href="<%=basePath %>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 <link href="adminex/css/style.css" rel="stylesheet" />
 <link href="adminex/css/style-responsive.css" rel="stylesheet" />
 <link href="css/services/footer.css"  rel="stylesheet" />
