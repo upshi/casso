@@ -37,16 +37,16 @@
 	                        <header class="panel-heading custom-tab dark-tab">
 	                            <ul class="nav nav-tabs">
 	                                <li class="active">
-	                                    <a href="#phone" data-toggle="tab">通过手机找回</a>
+	                                    <a href="#phonePane" data-toggle="tab">通过手机找回</a>
 	                                </li>
 	                                <li class="">
-	                                    <a href="#email" data-toggle="tab">通过邮箱找回</a>
+	                                    <a href="#emailPane" data-toggle="tab">通过邮箱找回</a>
 	                                </li>
 	                            </ul>
 	                        </header>
 	                        <div class="panel-body">
 	                            <div class="tab-content">
-	                                <div class="tab-pane active">
+	                                <div class="tab-pane active" id="phonePane">
 	                                    <div class="row">
 							                <form id="phoneForm" class="form-horizontal" method="post">
 												<div class="form-group" id="userNameGroup">
@@ -89,8 +89,31 @@
 											</form>
 							            </div>
 							        </div>
-	                                <div class="tab-pane" id="email">
-	                                    About
+	                                <div class="tab-pane" id="emailPane">
+	                                    <div class="row">
+							                <form id="emailForm" class="form-horizontal" method="post">
+							                	<div class="form-group" id="userNameInEmailGroup">
+													<label for="userName" class="col-sm-3 control-label">用户名&nbsp;*</label>
+					                                <div class="col-lg-5">
+														<input type="text" class="form-control" id="userNameInEmail" name="userName" placeholder="请输入用户名">
+					                                    <p class="help-block"></p>
+													</div>
+												</div>
+							                	
+												<div class="form-group" id="emailGroup">
+													<label for="email" class="col-sm-3 control-label">邮箱&nbsp;*</label>
+													<div class="col-lg-5">
+														<input type="text" class="form-control" id="email" name="email" placeholder="请输入邮箱">
+					                                    <p class="help-block"></p>
+													</div>
+												</div>
+												
+												<div class="panel-body">
+													<label for="password" class="col-sm-3 control-label"></label>
+													<button class="btn btn-primary" type="submit" id="emailSubmit">确定</button>
+												</div>
+											</form>
+							            </div>
 	                                </div>
 	                            </div>
 	                        </div>

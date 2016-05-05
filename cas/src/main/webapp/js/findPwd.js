@@ -16,7 +16,7 @@ $(function() {
 	
 	//绑定确定按钮点击事件
 	$("#phoneSubmit").click(function() {
-		if(validateBasic()) {
+		if(validatePhoneBasic()) {
 			if(isCaptchaRight) {
 				$('#codeGroup').removeClass('has-error');
 				$('#codeGroup').addClass('has-success');
@@ -31,6 +31,14 @@ $(function() {
 		return false;
 	});
 	
+	//绑定确定按钮点击事件
+	$("#emailSubmit").click(function() {
+		if(validateEmailBasic()) {
+			emailSubmit();
+		}
+		return false;
+	});
+	
 	//绑定用户名输入框失焦事件
 	$('#userName').on('blur', function(){
 		checkUserName();
@@ -39,6 +47,21 @@ $(function() {
 	//绑定手机号输入框失焦事件
 	$('#phone').on('blur', function(){
 		checkPhone();
+	});
+	
+	//绑定密码输入框失焦事件
+	$('#password').on('blur', function(){
+		checkPassword();
+	});
+	
+	//绑定用户名输入框失焦事件
+	$('#userNameInEmail').on('blur', function(){
+		checkUserNameInEmail();
+	});
+	
+	//绑定邮箱输入框失焦事件
+	$('#email').on('blur', function(){
+		checkEmail();
 	});
 	
 	//绑定验证码输入框blur事件
@@ -81,6 +104,15 @@ function validateBasic() {
 	return checkUserName() && checkPhone();
 }
 
+//前台校验基本信息
+function validatePhoneBasic() {
+	return checkUserName() && checkPhone() && checkPassword();
+}
+
+function validateEmailBasic() {
+	return checkUserNameInEmail() && checkEmail();
+}
+
 function checkUserName() {
 	var flag = false;
 	var userName = $("#userName").val();
@@ -111,6 +143,79 @@ function checkUserName() {
 			} 
 		});
 		return flag;
+	}
+}
+
+function checkUserNameInEmail() {
+	var flag = false;
+	var userNameInEmail = $("#userNameInEmail").val();
+	if($.trim(userNameInEmail) == "") {
+		$('#userNameInEmailGroup').removeClass('has-success');
+		$('#userNameInEmailGroup').addClass('has-error');
+		$('#userNameInEmailGroup .help-block').html('请输入用户名');
+		return false;
+	} else {
+		$.ajax({
+			url : "findPwd/checkUserName" ,
+			type : "POST" ,
+			cache : false , 
+			data : "userName=" + userNameInEmail ,
+			async : false ,
+			dataType : "json" ,
+			success : function(data) {
+				if(data.result == "exist") {
+					$('#userNameInEmailGroup').removeClass('has-error');
+					$('#userNameInEmailGroup').addClass('has-success');
+					$('#userNameInEmailGroup .help-block').html('');
+					flag = true;
+				} else {
+					$('#userNameInEmailGroup').removeClass('has-success');
+					$('#userNameInEmailGroup').addClass('has-error');
+					$('#userNameInEmailGroup .help-block').html('用户名不存在');
+				}
+			} 
+		});
+		return flag;
+	}
+}
+
+function checkPassword() {
+	var password = $('#password').val();
+	if(password == null || $.trim(password).length < 6) {
+		$('#passwordGroup').removeClass('has-success');
+		$('#passwordGroup').addClass('has-error');
+		$('#passwordGroup .help-block').html('请输入至少6位密码');
+		return false;
+	} else {
+		$('#passwordGroup').removeClass('has-error');
+		$('#passwordGroup').addClass('has-success');
+		$('#passwordGroup .help-block').html('');
+		return true;
+	}
+}
+
+function checkEmail() {
+	var flag = false;
+	var email = $("#email").val();
+	if($.trim(email) == "") {
+		$('#emailGroup').removeClass('has-success');
+		$('#emailGroup').addClass('has-error');
+		$('#emailGroup .help-block').html('请输入邮箱');
+		return false;
+	} else {
+		var re = /^[\w+]*@[\w+\.]+\w+$/i;
+		if(!re.test(email)) {
+			$('#emailGroup').removeClass('has-success');
+			$('#emailGroup').addClass('has-error');
+			$('#emailGroup .help-block').html('您输入的邮箱格式不正确');
+			return false;
+		} else {
+			$('#emailGroup').removeClass('has-error');
+			$('#emailGroup').addClass('has-success');
+			$('#emailGroup .help-block').html('');
+			return true;
+		}
+		
 	}
 }
 
@@ -197,7 +302,9 @@ function phoneSubmit() {
 					cancelButtonClass : 'btn-danger',
 					autoClose : 'confirm|3000'
 				});
-				window.location.href="/cas";
+				setTimeout(function() {
+					window.location.href="login";
+				}, 3000);
 			} else {
 				$.confirm({
 					keyboardEnabled : true,
@@ -211,3 +318,28 @@ function phoneSubmit() {
 		} 
 	});
 }
+
+function emailSubmit() {
+	$.ajax({
+		url : "findPwd/applyResetPwdByEmail" ,
+		type : "POST" ,
+		cache : false , 
+		data : $("#emailForm").serialize() ,
+		dataType : "json" ,
+		success : function(data) {
+			if(data.result == "success") {
+				window.location.href="findPwd/linked";
+			} else {
+				$.confirm({
+					keyboardEnabled : true,
+					title : '操作失败',
+					content : data.errorInfo,
+					confirmButtonClass : 'btn-info',
+					cancelButtonClass : 'btn-danger',
+					autoClose : 'confirm|3000'
+				});
+			}
+		} 
+	});
+}
+

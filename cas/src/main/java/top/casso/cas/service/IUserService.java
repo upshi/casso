@@ -38,5 +38,11 @@ public interface IUserService {
 	Map<String, Object> getSMS(User user, HttpSession session);
 
 	Map<String, Object> validateSMS(String code, HttpSession session);
+
+	Map<String, Object> applyResetPwdByEmail(User user, HttpSession session);
+
+	boolean validP(String p, HttpSession session);
+
+	void resetPwdByEmail(User user, HttpSession session);
 	
 }

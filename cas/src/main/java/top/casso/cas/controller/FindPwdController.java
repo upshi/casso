@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import top.casso.cas.exception.UserException;
+import top.casso.cas.model.RandomParam;
 import top.casso.cas.model.User;
 import top.casso.cas.service.IUserService;
 import top.casso.cas.util.StringUtil;
@@ -64,6 +65,23 @@ public class FindPwdController {
 		}
 		return map;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/checkUserNameByEmail")
+	public Map<String,Object> checkUserNameByEmail(String userName, HttpSession session) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		RandomParam randomParam = (RandomParam) session.getAttribute("randomParam");
+		if(randomParam == null) {
+			map.put("result", "false");
+			return map;
+		}
+		if(randomParam.getUserName().equals(userName)) {
+			map.put("result", "true");
+		} else {
+			map.put("result", "false");
+		}
+		return map;
+	}
 
 	@RequestMapping("/resetPwdByPhone")
 	@ResponseBody
@@ -106,6 +124,73 @@ public class FindPwdController {
 		return map;
 	}
 	
-
+	@RequestMapping("/resetPwdByEmail")
+	@ResponseBody
+	public Map<String, Object> resetPwdByEmail(User user, HttpSession session, Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		User selected = userService.selectByUserName(user.getUserName());
+		if(selected != null) {
+			//设置要更新的用户的uuid,同时把不需要修改的userName置空
+			user.setUuid(selected.getUuid());
+			user.setUserName(null);
+			// Base64解码得到原始密码
+			String rawPassword = new String(Base64.decodeFast(user.getPassword()));
+			// SHA-256加密密码
+			String encodedPassword = passwordEncoder.encode(rawPassword);
+			user.setPassword(encodedPassword);
+			userService.resetPwdByEmail(user, session);
+			map.put("result", "success");
+		} else {
+			map.put("result", "failure");
+			map.put("msg", "用户名不存在");
+		}
+		
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/applyResetPwdByEmail")
+	public Map<String,Object> applyResetPwdByEmail(User user, HttpSession session) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(user == null || StringUtil.isNoE(user.getUserName()) || StringUtil.isNoE(user.getEmail()) ) {
+			map.put("result", "false");
+			map.put("errorInfo", "用户名或邮箱不能为空");
+			return map;
+		}
+		User selected = userService.selectByUserName(user.getUserName());
+		
+		if(selected == null) {
+			map.put("result", "false");
+			map.put("errorInfo", "用户名不存在");
+			return map;
+		}
+		
+		if(!selected.getEmail().equals(user.getEmail())) {
+			map.put("result", "false");
+			map.put("errorInfo", "用户名与邮箱不匹配");
+			return map;
+		}
+		return userService.applyResetPwdByEmail(user, session);
+	}
+	
+	@RequestMapping("/linked")
+	public String linked() {
+		return "linked";
+	}
+	
+	@RequestMapping("/reset")
+	public String reset(String p, HttpSession session) {
+		if(p == null || p.equals("")) {
+			return "redirect:/login";
+		}
+		
+		boolean flag =  userService.validP(p, session);
+		if(flag) {
+			return "resetPwd";
+		}
+		
+		return "redirect:/login";
+	}
 	
 }
