@@ -1,7 +1,11 @@
 package top.casso.cas.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +18,7 @@ import top.casso.cas.model.Role;
 import top.casso.cas.model.User;
 import top.casso.cas.model.UserRole;
 import top.casso.cas.service.IUserService;
+import top.casso.cas.util.SMSSender;
 import top.casso.cas.util.StringUtil;
 import top.casso.cas.util.UUIDGenerator;
 import top.casso.cas.util.UploadObject;
@@ -149,5 +154,48 @@ public class UserServiceImpl implements IUserService {
 			throw new UserException("文件上传失败");
 		}
 	}
+
+	public Map<String, Object> getSMS(User user, HttpSession session) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		// 先从用户表中查询是否存在，如果不存在，则返回错误信息
+		User selected = userMapper.selectByUserName(user.getUserName());
+		if(selected != null) {
+			//如果根据用户名查询出来的用户的手机号和传递来的一致,则发送短信验证码
+			if(selected.getPhone().equals(user.getPhone())) {
+				String captcha = SMSSender.send(user.getPhone());
+				//验证码放到session中
+				session.setAttribute("captcha", captcha);
+				map.put("result", "true");
+				map.put("errorInfo", "");
+			} else {
+				map.put("result", "false");
+				map.put("errorInfo", "您输入的手机号不正确");
+			}
+		} else {
+			map.put("result", "false");
+			map.put("errorInfo", "用户名不存在");
+		}
+		return map;
+	}
+	
+	// 验证验证码是否正确
+		public Map<String, Object> validateSMS(String code, HttpSession session) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			String captcha = (String) session.getAttribute("captcha");
+			if (captcha == null || "".equals(captcha)) {
+				map.put("result", "false");
+				map.put("errorInfo", "请点击获取验证码");
+			}
+			if (code != null && code != "") {
+				if (!code.equals(captcha)) {
+					map.put("result", "false");
+					map.put("errorInfo", "您输入的验证码不正确");
+				} else {
+					map.put("result", "true");
+					map.put("errorInfo", "");
+				}
+			}
+			return map;
+		}
 
 }

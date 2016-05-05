@@ -31,7 +31,7 @@
 		
 			<!--页面主体  开始-->
 			<div class="wrapper">
-				<div class="row text-center">
+				<div class="row">
 					<div class="col-md-8 col-md-offset-2">
 	                    <section class="panel">
 	                        <header class="panel-heading custom-tab dark-tab">
@@ -46,9 +46,9 @@
 	                        </header>
 	                        <div class="panel-body">
 	                            <div class="tab-content">
-	                                <div class="tab-pane active" id="phone">
+	                                <div class="tab-pane active">
 	                                    <div class="row">
-							                <form id="form" class="form-horizontal" method="post" action="services/user/addUser" enctype="multipart/form-data">
+							                <form id="phoneForm" class="form-horizontal" method="post">
 												<div class="form-group" id="userNameGroup">
 													<label for="userName" class="col-sm-3 control-label">用户名&nbsp;*</label>
 					                                <div class="col-lg-5">
@@ -83,7 +83,8 @@
 												</div>
 												
 												<div class="panel-body">
-													<button class="btn btn-primary" type="submit" id="submit">保存</button>
+													<label for="password" class="col-sm-3 control-label"></label>
+													<button class="btn btn-primary" type="submit" id="phoneSubmit">确定</button>
 												</div>
 											</form>
 							            </div>

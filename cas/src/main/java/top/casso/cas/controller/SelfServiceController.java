@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.alibaba.fastjson.util.Base64;
-
 import top.casso.cas.exception.UserException;
 import top.casso.cas.model.User;
 import top.casso.cas.service.IUserService;
 import top.casso.cas.util.UUIDGenerator;
 import top.casso.cas.util.UploadObject;
+
+import com.alibaba.fastjson.util.Base64;
 
 @Controller
 @RequestMapping("/self")
@@ -40,10 +40,6 @@ public class SelfServiceController {
 		return "info";
 	}
 	
-	@RequestMapping("/findPwd")
-	public String findPwd() {
-		return "findPwd";
-	}
 	
 	@RequestMapping("/resetPwd")
 	@ResponseBody

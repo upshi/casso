@@ -2,6 +2,9 @@ package top.casso.cas.service;
 
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import top.casso.cas.exception.UserException;
 import top.casso.cas.model.User;
@@ -31,5 +34,9 @@ public interface IUserService {
 	User selectByUserName(String userName);
 
 	void updatePhoto(User user, UploadObject uo) throws UserException;
+
+	Map<String, Object> getSMS(User user, HttpSession session);
+
+	Map<String, Object> validateSMS(String code, HttpSession session);
 	
 }
