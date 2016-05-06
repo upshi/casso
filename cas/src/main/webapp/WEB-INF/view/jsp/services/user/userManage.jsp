@@ -14,6 +14,8 @@
 <link href="adminex/css/style-responsive.css"  rel="stylesheet" />
 <link href="css/jquery-confirm.css" rel="stylesheet" type="text/css"/>
 <link href="css/services/footer.css"  rel="stylesheet" />
+<!-- fileinput组件样式 -->
+<link href="adminex/fileinput/fileinput.min.css" rel="stylesheet">
 <title>用户管理</title>
 </head>
 <body class="horizontal-menu-page">
@@ -29,6 +31,9 @@
 					<form class="form-inline" action="services/user/search">
 						<div class="form-group">
 							<a class="btn btn-danger form-control" href="services/user/toAdd">+添加新用户</a>
+						</div>
+						<div class="form-group">
+							<button id="batchImportBtn" class="btn btn-danger form-control">+批量导入</button>
 						</div>
 						<div class="form-group">
 			                <input class="form-control" name="userName" type="text" placeholder="请输入用户名" />
@@ -120,6 +125,38 @@
 		<!--页脚区域  结束-->
 	</section>
 
+
+<!-- Modal Start -->
+<div class="modal fade" id="batchImportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title text-left">
+					批量导入用户
+				</h4>
+			</div>
+			<div class="modal-body row">
+				<form class="form-horizontal adminex-form" method="POST" action="services/user/toBatchImport" enctype="multipart/form-data">
+					<div class="form-group" id="fileGroup">
+						<label class="col-sm-3 control-label">请选择Excel文件</label>
+						<div class="col-sm-8">
+							<input type="file" id="input-id" name="file" />
+							<p class="help-block"></p>
+						</div>
+					</div>
+					<label class="col-sm-3 control-label"></label>
+					<button id="batchImportConfirm" class="btn btn-warning col-sm-2" type="submit">确定</button>
+				</form>
+			</div>
+			<div class="modal-footer"></div>
+		</div>
+	</div>
+</div>
+<!-- Modal End -->
+
 <script src="adminex/js/jquery-1.10.2.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script src="adminex/js/jquery-ui-1.9.2.custom.min.js"></script>
@@ -128,6 +165,10 @@
 <script src="adminex/js/modernizr.min.js"></script>
 <script src="adminex/js/jquery.nicescroll.js"></script>
 <script src="js/jquery-confirm.js"></script>
+
+<!-- fileinput组件 -->
+<script type="text/javascript" src="adminex/fileinput/fileinput.min.js"></script>
+<script type="text/javascript" src="adminex/fileinput/fileinput_locale_zh.js"></script>
 
 <!--common scripts for all pages-->
 <script src="adminex/js/scripts.js"></script>

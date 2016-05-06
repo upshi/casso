@@ -12,7 +12,7 @@
 <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 <link href="adminex/css/style.css" rel="stylesheet" />
 <link href="adminex/css/style-responsive.css" rel="stylesheet" />
-<link href="css/services/footer.css"  rel="stylesheet" />
+<link href="css/services/footer-fixed.css"  rel="stylesheet" />
 <link href="css/jquery-confirm.css" rel="stylesheet">
 <title>找回密码</title>
 </head>

@@ -1,5 +1,6 @@
 package top.casso.cas.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.jasig.cas.authentication.handler.DefaultPasswordEncoder;
 import org.jasig.cas.authentication.handler.PasswordEncoder;
@@ -30,8 +32,10 @@ import top.casso.cas.model.UserRole;
 import top.casso.cas.service.IRoleService;
 import top.casso.cas.service.IUserRoleService;
 import top.casso.cas.service.IUserService;
+import top.casso.cas.util.ImportUserFromXLS;
 import top.casso.cas.util.UUIDGenerator;
 import top.casso.cas.util.UploadObject;
+import top.casso.cas.vo.ImportVO;
 import top.casso.cas.vo.UserRoleVO;
 
 import com.alibaba.fastjson.util.Base64;
@@ -50,6 +54,9 @@ public class UserController {
 	@Autowired
 	private IUserRoleService userRoleService;
 
+	@Autowired
+	private ImportUserFromXLS importUserFromXLS;
+	
 	private static PasswordEncoder passwordEncoder = new DefaultPasswordEncoder("SHA-256");
 
 	@RequestMapping("/manage")
@@ -385,35 +392,20 @@ public class UserController {
 			urVo = new UserRoleVO(UUIDGenerator.generateUUID(), userUuid, str);
 			newUserRoleList.add(urVo);
 		}
-		if (newUserRoleList.size() > 0) {
-			try {
-				userRoleService.insertBatchByUserRoleVO(newUserRoleList);
-			} catch (UserRoleException e) {
-				e.printStackTrace();
-			}
-		}
-
 		// 原有资源Set减去交集部分,得到删除的资源
 		oldRoleSet.removeAll(mixedRoleSet);
-		List<String> deleteUserRoleList = new ArrayList<String>();
+		List<String> deletedUserRoleList = new ArrayList<String>();
 		for (String str : oldRoleSet) {
 			for (UserRole ur : userRoles) {
 				if (ur.getRole().getUuid().equals(str)) {
-					deleteUserRoleList.add(ur.getUuid());
+					deletedUserRoleList.add(ur.getUuid());
 				}
 			}
 		}
-		if (deleteUserRoleList.size() > 0) {
-			try {
-				userRoleService.deleteBatchByUuid(deleteUserRoleList);
-			} catch (UserRoleException e) {
-				e.printStackTrace();
-			}
-		}
-
-		// 查询最新的用户角色信息
+		
+		//执行用户角色的 更新操作,并返回用户最新的角色
 		try {
-			userRoles = userRoleService.selectRolesByUserUuid(userUuid);
+			userRoles = userRoleService.updateUserRoles(newUserRoleList,deletedUserRoleList,userUuid);
 		} catch (UserRoleException e) {
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
@@ -437,6 +429,39 @@ public class UserController {
 		} else {
 			map.put("result", "inexistence");
 		}
+		return map;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/toBatchImport")
+	public String batchImport(MultipartFile file, Model model, HttpSession session) throws IOException {
+		Map<String, Object> importResult = importUserFromXLS.doImport(file.getInputStream());
+		List<User> correctUsers = (List<User>) importResult.get("correctUsers");
+		List<ImportVO> errorUsers = (List<ImportVO>) importResult.get("errorUsers");
+		
+		model.addAttribute("corrects", correctUsers.size());
+		model.addAttribute("errors", errorUsers.size());
+		model.addAttribute("total", correctUsers.size() + errorUsers.size());
+		model.addAttribute("correctUsers", correctUsers);
+		model.addAttribute("errorUsers", errorUsers);
+		session.setAttribute("correctUsers", correctUsers);
+		
+		return "services/user/batchImport";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/doBatchImport")
+	public Map<String, Object> doBatchImport(HttpSession session) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<User> users = (List<User>) session.getAttribute("correctUsers");
+		try {
+			userService.insertBatch(users);
+			session.removeAttribute("correctUsers");
+		} catch (UserException e) {
+			map.put("result", "failure");
+			map.put("msg",e.getCause());
+		}
+		map.put("result", "success");
 		return map;
 	}
 }

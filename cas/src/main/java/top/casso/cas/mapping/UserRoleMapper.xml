@@ -36,7 +36,7 @@
     where uuid = #{uuid,jdbcType=VARCHAR}
   </delete>
   
-   <insert id="insertBatch" parameterType="java.util.List" >
+  <insert id="insertBatch" parameterType="java.util.List" >
     insert into t_user_role (uuid, userUuid, roleUuid) values
    		<foreach collection="list" item="item" index="index" separator="," >  
 		    (#{item.uuid,jdbcType=VARCHAR}, #{item.user.uuid,jdbcType=VARCHAR}, #{item.role.uuid,jdbcType=VARCHAR})

@@ -79,7 +79,11 @@
 							
 							<div class="row">
 								<br>
-								<label class="col-sm-3 text-right">照片:</label> <img data-action="zoom" src="${user.photo }" height="100" width="100" />
+								<label class="col-sm-3 text-right">照片:</label>
+								<c:if test="${user.photo != null && user.photo != '' }">
+									<img data-action="zoom" src="${user.photo }" height="100" width="100" />
+								</c:if>
+								
 								<br><br>
 							</div>
 							

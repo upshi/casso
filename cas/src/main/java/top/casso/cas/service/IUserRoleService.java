@@ -24,6 +24,8 @@ public interface IUserRoleService {
     int insertBatchByUserRoleVO(List<UserRoleVO> list) throws UserRoleException;
     
     int deleteBatchByUuid(List<String> list) throws UserRoleException;
+
+	List<UserRole> updateUserRoles(List<UserRoleVO> newUserRoleList, List<String> deletedUserRoleList, String userUuid) throws UserRoleException;
     
 
 

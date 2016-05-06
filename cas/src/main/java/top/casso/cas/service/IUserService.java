@@ -44,5 +44,7 @@ public interface IUserService {
 	boolean validP(String p, HttpSession session);
 
 	void resetPwdByEmail(User user, HttpSession session);
+
+	void insertBatch(List<User> users) throws UserException;
 	
 }

@@ -90,6 +90,25 @@
       #{title,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
       #{description,jdbcType=LONGVARCHAR})
   </insert>
+  
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into t_user (uuid, userName, password, 
+	      name, sex, age, idNo, 
+	      phone, email, address, 
+	      photo, eduBackground, department, 
+	      title, role, state, 
+	      description)
+	    values 
+   		<foreach collection="list" item="item" index="index" separator="," >  
+		    (#{item.uuid,jdbcType=VARCHAR}, #{item.userName,jdbcType=VARCHAR}, #{item.password,jdbcType=VARCHAR}, 
+		      #{item.name,jdbcType=VARCHAR}, #{item.sex,jdbcType=VARCHAR}, #{item.age,jdbcType=INTEGER}, #{item.idNo,jdbcType=VARCHAR}, 
+		      #{item.phone,jdbcType=VARCHAR}, #{item.email,jdbcType=VARCHAR}, #{item.address,jdbcType=VARCHAR}, 
+		      #{item.photo,jdbcType=VARCHAR}, #{item.eduBackground,jdbcType=VARCHAR}, #{item.department,jdbcType=VARCHAR}, 
+		      #{item.title,jdbcType=VARCHAR}, #{item.role,jdbcType=VARCHAR}, #{item.state,jdbcType=INTEGER}, 
+		      #{item.description,jdbcType=LONGVARCHAR})
+		</foreach>
+  </insert>
+  
   <insert id="insertSelective" parameterType="top.casso.cas.model.User" >
     insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides="," >

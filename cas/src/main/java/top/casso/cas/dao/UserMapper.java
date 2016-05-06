@@ -20,5 +20,7 @@ public interface UserMapper {
 	List<User> selectByCondition(User user);
 
 	User selectByUserName(String userName);
+
+	void insertBatch(List<User> users);
     
 }

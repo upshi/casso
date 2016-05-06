@@ -67,8 +67,15 @@ public class UserServiceImpl implements IUserService {
 	public int insert(User user, UploadObject uo) throws UserException {
 		int result = 0;
 		try {
-			result = userMapper.insert(user);
+			//查询角色
 			Role role = roleMapper.selectByEName("ROLE_USER");
+			
+			//设置用户的role属性
+			user.setRole(role.getcName());
+			//插入用户
+			result = userMapper.insert(user);
+			
+			//插入用户角色
 			UserRole ur = new UserRole(UUIDGenerator.generateUUID(), user, role);
 			userRoleMapper.insert(ur);
 		} catch (Exception e) {
@@ -89,6 +96,29 @@ public class UserServiceImpl implements IUserService {
 			}
 		}
 		return result;
+	}
+	
+	public void insertBatch(List<User> users) throws UserException {
+		try {
+			//查询角色
+			Role role = roleMapper.selectByEName("ROLE_USER");
+			
+			List<UserRole> userRoles = new ArrayList<UserRole>();
+			UserRole ur = null;
+			for(User u : users) {
+				u.setRole(role.getcName());
+				ur = new UserRole(UUIDGenerator.generateUUID(), u, role);
+				userRoles.add(ur);
+			}
+			
+			//批量插入用户
+			userMapper.insertBatch(users);
+			
+			//批量插入用户角色
+			userRoleMapper.insertBatch(userRoles);
+		} catch (Exception e) {
+			throw new UserException(e.getMessage());
+		}
 	}
 
 	public int insertSelective(User record) throws UserException {

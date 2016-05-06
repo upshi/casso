@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import top.casso.cas.dao.UserMapper;
 import top.casso.cas.dao.UserRoleMapper;
 import top.casso.cas.exception.UserRoleException;
+import top.casso.cas.model.User;
 import top.casso.cas.model.UserRole;
 import top.casso.cas.service.IUserRoleService;
 import top.casso.cas.util.StringUtil;
@@ -14,6 +16,9 @@ import top.casso.cas.vo.UserRoleVO;
 
 @Service("userRoleService")
 public class UserRoleServiceImpl implements IUserRoleService {
+	
+	@Autowired
+	private UserMapper userMapper;
 	
 	@Autowired
 	private UserRoleMapper userRoleMapper;
@@ -79,6 +84,33 @@ public class UserRoleServiceImpl implements IUserRoleService {
 
 	public int deleteBatchByUuid(List<String> list) throws UserRoleException{
 		return userRoleMapper.deleteBatchByUuid(list);
+	}
+
+	@Override
+	public List<UserRole> updateUserRoles(List<UserRoleVO> newUserRoleList, List<String> deletedUserRoleList, String userUuid) throws UserRoleException {
+		//插入新增的角色
+		if (newUserRoleList.size() > 0) {
+			insertBatchByUserRoleVO(newUserRoleList);
+		}
+		//删除移除的角色
+		if (deletedUserRoleList.size() > 0) {
+			deleteBatchByUuid(deletedUserRoleList);
+		}
+		// 查询最新的用户角色信息
+		List<UserRole> userRoles = selectRolesByUserUuid(userUuid);
+		
+		//更新用户的角色属性信息
+		User user = new User();
+		user.setUuid(userUuid);
+		StringBuffer roles = new StringBuffer();
+		for (UserRole ur : userRoles) {
+			roles.append(ur.getRole().getcName()).append(",");
+		}
+		roles.deleteCharAt(roles.length() - 1);
+		user.setRole(roles.toString());
+		userMapper.updateByPrimaryKeySelective(user);
+		
+		return userRoles;
 	}
 	
 }
