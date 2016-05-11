@@ -111,8 +111,12 @@
 		</div>
 		<div class="actions">
 			<button type="submit" class="primaryAction" id="submit-wf_FormGardenDemonst" value="<spring:message code="management.services.add.button.save" />">
-			<spring:message code="management.services.add.button.save" /></button> 
-			or <a href="manage.html" style="color:#b00;"><spring:message code="management.services.add.button.cancel" /></a>
+				<spring:message code="management.services.add.button.save" />
+			</button> 
+				or 
+			<a href="manage.html" style="color:#b00;">
+				<spring:message code="management.services.add.button.cancel" />
+			</a>
 		</div>
 		<br><br><br><br><br><br><br><br><br><br>
 	</fieldset>

@@ -126,7 +126,7 @@ label {
 }
 input, select, textarea, option {font:normal 2em sans-serif;}
 input, textarea {padding:0px 2px;}
-select option {margin:auto .5em 0 0;}
+select option {margin:auto .5em 0 0; font-size:1.2em;}
 /* vertically aligned form*/
 input.check { margin:0 0 0 .5em; width:13px; height:13px; vertical-align:middle;} 
 
@@ -283,7 +283,8 @@ button {font-size:2em;}
     padding:.5em;
     color:green;
     font-weight:900;
-    }
+    font-size:1.2em;
+}
     
 @media screen {
     div#container {

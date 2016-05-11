@@ -196,9 +196,18 @@
 				<!--key值为数据表中的字段名称，value值为Client端取值时的名称标识 -->
 				<entry key="userName" value="userName" />
 				<entry key="name" value="name" />
+				<entry key="sex" value="sex" />
+				<entry key="age" value="age" />
+				<entry key="idNo" value="idNo" />
 				<entry key="phone" value="phone" />
 				<entry key="email" value="email" />
 				<entry key="address" value="address" />
+				<entry key="photo" value="photo" />
+				<entry key="eduBackground" value="eduBackground" />
+				<entry key="department" value="department" />
+				<entry key="title" value="title" />
+				<entry key="role" value="role" />
+				<entry key="description" value="description" />
 			</map>
 		</property>
 	</bean>
