@@ -53,6 +53,11 @@
 			<!-- <mvc:exclude-mapping path="/user/login" /> -->
 			<bean class="top.casso.cas.interceptor.UserInterceptor"></bean>
 		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/self/**" />
+			<!-- <mvc:exclude-mapping path="/user/login" /> -->
+			<bean class="top.casso.cas.interceptor.SelfServiceInterceptor"></bean>
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

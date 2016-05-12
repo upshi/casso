@@ -35,7 +35,7 @@ public class SelfServiceController {
 	
 	@RequestMapping("/info")
 	public String info(HttpServletRequest request, HttpSession session, Model model) {
-		User user = userService.selectByUserName("upshi");
+		User user = (User) request.getAttribute("slefUser");
 		model.addAttribute("user", user);
 		return "info";
 	}

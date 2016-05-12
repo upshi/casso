@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%--
 
     Licensed to Jasig under one or more contributor license
@@ -23,6 +24,7 @@
 			<h2><spring:message code="screen.success.header" /></h2>
 			<p><spring:message code="screen.success.success" /></p>
 			<p><spring:message code="screen.success.security" /></p>
+			<p><a href='<c:url value="/self/info" />'>修改个人信息</a></p>
 		</div>
 <jsp:directive.include file="includes/bottom.jsp" />
 
