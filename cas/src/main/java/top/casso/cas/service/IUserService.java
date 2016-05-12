@@ -46,5 +46,8 @@ public interface IUserService {
 	void resetPwdByEmail(User user, HttpSession session);
 
 	void insertBatch(List<User> users) throws UserException;
+
+	//角色uuid保存在user的uuid中
+	List<User> selectByConditionWithRoleUuid(User user);
 	
 }

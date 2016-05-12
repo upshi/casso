@@ -70,6 +70,31 @@
 			and state = #{state}
 		</if>
 	</select>
+	
+  <select id="selectByConditionWithRoleUuid" resultMap="ResultMapWithBLOBs" parameterType="top.casso.cas.model.User">
+  		select t_user.* from t_user
+		where 1=1 
+		<if test="userName!=null and userName!=''">
+			and userName LIKE CONCAT('%', #{userName},'%' )
+		</if>
+		<if test="name!=null and name!=''">
+			and name LIKE CONCAT('%', #{name},'%' )
+		</if>
+		<if test="sex!=null and sex!=''">
+			and sex = #{sex}
+		</if>
+		<if test="eduBackground!=null and eduBackground!=''">
+			and eduBackground LIKE CONCAT('%', #{eduBackground},'%' )
+		</if>
+		<if test="title!=null and title!= ''">
+			and title LIKE CONCAT('%', #{title},'%' )
+		</if>
+		<if test="department!=null and department!=''">
+			and department LIKE CONCAT('%', #{department},'%' )
+		</if>
+		and uuid not in 
+		(select userUuid from t_user_role where roleUuid = #{uuid} )
+	</select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from t_user

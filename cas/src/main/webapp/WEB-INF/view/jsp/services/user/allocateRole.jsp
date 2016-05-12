@@ -17,7 +17,7 @@
 <!--multi-select-->
 <link rel="stylesheet" type="text/css" href="css/multi-select.css" />
 
-<title>编辑角色</title>
+<title>分配角色</title>
 </head>
 <body class="horizontal-menu-page">
 	<section>
@@ -72,12 +72,11 @@
 <!--multi-select-->
 <script type="text/javascript" src="adminex/js/jquery-multi-select/js/jquery.multi-select.js"></script>
 <script type="text/javascript" src="adminex/js/jquery-multi-select/js/jquery.quicksearch.js"></script>
-<script type="text/javascript" src="js/multi-select.js"></script>
+<script type="text/javascript" src="js/multi-select-role.js"></script>
 
 
 <!--common scripts for all pages-->
 <script src="adminex/js/scripts.js"></script>
-<script src="js/allocateRole.js"></script>
 
 </body>
 </html>

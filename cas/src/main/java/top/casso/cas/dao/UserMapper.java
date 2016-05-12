@@ -22,5 +22,8 @@ public interface UserMapper {
 	User selectByUserName(String userName);
 
 	void insertBatch(List<User> users);
+
+	//角色uuid保存在user的uuid中
+	List<User> selectByConditionWithRoleUuid(User user);
     
 }

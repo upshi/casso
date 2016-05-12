@@ -293,4 +293,9 @@ public class UserServiceImpl implements IUserService {
 		//移除randomParam
 		session.removeAttribute("randomParam");
 	}
+
+	//角色uuid保存在user的uuid中
+	public List<User> selectByConditionWithRoleUuid(User user) {
+		return userMapper.selectByConditionWithRoleUuid(user);
+	}
 }
