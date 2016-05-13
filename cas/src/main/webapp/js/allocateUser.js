@@ -1,4 +1,7 @@
 $(function(){
+	
+	$('#navi_role_manage').addClass('active');
+	
 	$('#submit').on('click', function(){
 		var selected = $('#multi_select option:selected');
 		if(selected.length > 0) {

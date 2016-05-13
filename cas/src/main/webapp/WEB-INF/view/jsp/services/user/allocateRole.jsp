@@ -78,5 +78,9 @@
 <!--common scripts for all pages-->
 <script src="adminex/js/scripts.js"></script>
 
+<script type="text/javascript">
+$('#navi_user_manage').addClass('active');
+</script>
+
 </body>
 </html>

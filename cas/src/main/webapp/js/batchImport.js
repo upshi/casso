@@ -1,4 +1,6 @@
 $(function(){
+	$('#navi_user_manage').addClass('active');
+	
 	$('#importBtn').on('click',function() {
 		doImport();
 	});

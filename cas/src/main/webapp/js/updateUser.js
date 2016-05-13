@@ -1,5 +1,7 @@
 $(function(){
 	
+	$('#navi_user_manage').addClass('active');
+	
 	$('#name').on('blur',checkName);
 	$('#idNo').on('blur',checkIdNo);
 	$('#phone').on('blur',checkPhone);

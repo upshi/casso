@@ -1,4 +1,7 @@
 $(function() {
+	
+	$('#navi_user_manage').addClass('active');
+	
 	$('#batchImportBtn').on('click', function(){
 		$('#batchImportModal').modal();
 		return false;

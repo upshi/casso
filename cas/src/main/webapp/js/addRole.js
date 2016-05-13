@@ -1,6 +1,6 @@
 $(function(){
 	/*导航颜色*/
-	$("#navi_role").addClass('active');
+	$('#navi_role_manage').addClass('active');
 	
 	/*绑定失焦事件*/
 	$('#cName').on('blur',checkCname);

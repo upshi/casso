@@ -121,4 +121,7 @@
 		<br><br><br><br><br><br><br><br><br><br>
 	</fieldset>
 </form:form>
+<script type="text/javascript">
+	document.getElementById('navi_add_service').setAttribute('class','active'); 
+</script>
 <%@include file="includes/bottom.jsp" %>

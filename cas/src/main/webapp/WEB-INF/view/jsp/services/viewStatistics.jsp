@@ -99,4 +99,8 @@
 	<img src="${appender.chartGenerator.chartUrl}" alt="${appender.name}" />
 </c:forEach>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<script type="text/javascript">
+	document.getElementById('navi_statistics').setAttribute('class','active'); 
+</script> 
 <%@include file="includes/bottom.jsp" %>

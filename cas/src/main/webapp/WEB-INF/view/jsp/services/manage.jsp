@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%--
 
     Licensed to Jasig under one or more contributor license
@@ -20,7 +21,7 @@
 --%>
 <%@include file="includes/top.jsp"%>
 <h1>
-	<spring:message code="${pageTitle}" text="Logged Out" />
+	服务管理
 </h1>
 
 <c:if test="${fn:length(services) eq 0}">
@@ -74,5 +75,9 @@
 		</tbody>
 	</table>
 </div>
-<div class="add"><a href="add.html"><spring:message code="addServiceView" /></a></div>	  
+<div class="add"><a href="add.html"><spring:message code="addServiceView" /></a></div>	
+
+<script type="text/javascript">
+	document.getElementById('navi_service_manage').setAttribute('class','active'); 
+</script>  
 <%@include file="includes/bottom.jsp" %>

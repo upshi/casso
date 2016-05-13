@@ -1,5 +1,5 @@
 $(function() {
-	
+	$('#navi_role_manage').addClass('active');
 })
 
 function deleteRole(roleUuid) {

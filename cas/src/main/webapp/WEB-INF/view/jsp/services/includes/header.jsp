@@ -11,11 +11,11 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="services/manage.html">管理服务</a></li>
-				<li><a href="services/add.html">添加服务</a></li>
-				<li><a href="services/viewStatistics.html">统计信息</a></li>
-				<li><a href="services/user/manage">用户管理</a></li>
-				<li><a href="services/role/manage">角色管理</a></li>
+				<li id="navi_service_manage"><a href="services/manage.html">服务管理</a></li>
+				<li id="navi_add_service"><a href="services/add.html">添加服务</a></li>
+				<li id="navi_statistics"><a href="services/viewStatistics.html">统计信息</a></li>
+				<li id="navi_user_manage"><a href="services/user/manage">用户管理</a></li>
+				<li id="navi_role_manage"><a href="services/role/manage">角色管理</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">

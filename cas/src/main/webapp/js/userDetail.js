@@ -1,4 +1,7 @@
 $(function() {
+	
+	$('#navi_user_manage').addClass('active');
+	
 	//打开重置密码模态框按钮点击事件
 	$('#resetPwd').on('click', function(){
 		$('#password').val('');

@@ -1,4 +1,6 @@
 $(function(){
+	$('#navi_role_manage').addClass('active');
+	
 	/*导航颜色*/
 	$("#navi_role").addClass('active');
 	
