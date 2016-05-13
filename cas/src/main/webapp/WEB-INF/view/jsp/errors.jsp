@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%--
 
     Licensed to Jasig under one or more contributor license
@@ -20,10 +21,10 @@
 --%>
 <jsp:directive.include file="default/ui/includes/top.jsp" />
 		<div id="welcome">
-			<h2>CAS is Unavailable</h2>
+			<h2>中央认证服务目前不可用</h2>
 
 			<p>
-			   There was an error trying to complete your request.  Please notify your support desk or try again.
+			   在尝试完成您的请求时发生了错误,请您稍后重试。
 			</p>
 		</div>
 <jsp:directive.include file="default/ui/includes/bottom.jsp" />
