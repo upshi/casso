@@ -1,5 +1,6 @@
 package top.casso.cas.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,11 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import top.casso.cas.exception.RoleException;
+import top.casso.cas.exception.UserRoleException;
 import top.casso.cas.model.Role;
 import top.casso.cas.model.User;
 import top.casso.cas.service.IRoleService;
+import top.casso.cas.service.IUserRoleService;
 import top.casso.cas.service.IUserService;
 import top.casso.cas.util.UUIDGenerator;
+import top.casso.cas.vo.UserRoleVO;
 
 import com.github.pagehelper.PageInfo;
 
@@ -32,6 +36,9 @@ public class RoleController {
 	
 	@Autowired
 	private IUserService userService;
+	
+	@Autowired
+	private IUserRoleService userRoleService;
 	
 	@RequestMapping("/manage")
 	public String toRoleManager(Model model, HttpSession session, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "4") int size) {
@@ -246,5 +253,24 @@ public class RoleController {
 		return "services/role/allocateUser";
 	}
 	
+	@RequestMapping("/allocateUser")
+	@ResponseBody
+	public Map<String, Object> allocateResource(String roleUuid, String[] userUuid, Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<UserRoleVO> urs = new ArrayList<UserRoleVO>();
+		for(String uid : userUuid) {
+			urs.add(new UserRoleVO(UUIDGenerator.generateUUID(), uid, roleUuid));
+		}
+		
+		try {
+			userRoleService.insertBatchByUserRoleVO(urs);
+			map.put("result", "success");
+		} catch (UserRoleException e) {
+			e.printStackTrace();
+			map.put("result", "failure");
+			map.put("msg", e.getCause());
+		}
+		return map;
+	}
 }
  

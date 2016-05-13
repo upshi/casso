@@ -12,6 +12,10 @@ public class Role {
 	private String description;
 
 	public Role() {}
+	
+	public Role(String uuid) {
+		this.uuid = uuid;
+	}
 
 	public Role(String uuid, String cName, String eName, String description) {
 		super();

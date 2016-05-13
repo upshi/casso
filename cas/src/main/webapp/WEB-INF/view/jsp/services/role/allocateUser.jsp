@@ -64,7 +64,7 @@
 							</div>
 		                </form>
 					
-						<form action="services/user/allocateUser" class="form-horizontal" method="POST">
+						<form id="userForm" class="form-horizontal" method="POST">
 							<input type="hidden" name="roleUuid" value="${role.uuid}"/>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">角色名:&nbsp;</label>
@@ -76,7 +76,7 @@
 								<div class="col-md-9">
 									<select name="userUuid" class="multi-select" multiple="" id="multi_select">
 										<c:forEach items="${userList}" var="user" varStatus="id">
-											<option value="${user.uuid }" <c:if test="${user.description == '%SELECTED%@' }">selected</c:if> >
+											<option value="${user.uuid }" >
 												${user.userName }&nbsp;&nbsp;|&nbsp;&nbsp;${user.name }
 											</option>
 										</c:forEach>
@@ -113,6 +113,7 @@
 
 <!--common scripts for all pages-->
 <script src="adminex/js/scripts.js"></script>
+<script src="js/allocateUser.js"></script>
 
 </body>
 </html>

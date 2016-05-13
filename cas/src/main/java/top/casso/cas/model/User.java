@@ -26,6 +26,10 @@ public class User {
 	
 	public User() {}
 	
+	public User(String uuid) {
+		this.uuid = uuid;
+	}
+	
 	public User(String uuid, String userName, String password, String name, String sex, Integer age, String idNo, String phone, String email, String address, String photo, String eduBackground, String description, String department, String title, String role, Integer state) {
 		super();
 		this.uuid = uuid;
