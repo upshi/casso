@@ -58,74 +58,248 @@
 						<header class="panel-heading"> 个人信息 </header>
 						<div class="panel-body">
 							<br>
-							<div class="row">
-								<label class="col-sm-3 text-right">用户名:</label> <label class="col-sm-3 text-left">${user.userName}</label>
-							</div>
 							
 							<div class="row">
-								<label class="col-sm-3 text-right">姓名:</label> <label class="col-sm-3 text-left">${user.name}</label>
-							</div>
-							
-							<div class="row">
-								<label class="col-sm-3 text-right">性别:</label> <label class="col-sm-3 text-left">${user.sex}</label>
-							</div>
-							
-							<div class="row">
-								<label class="col-sm-3 text-right">年龄:</label> <label class="col-sm-3 text-left">${user.age}</label>
-							</div>
-							
-							<div class="row">
-								<label class="col-sm-3 text-right">身份证号:</label> <label class="col-sm-3 text-left">${user.idNo}</label>
-							</div>
-							
-							<div class="row">
-								<label class="col-sm-3 text-right">手机号:</label> <label class="col-sm-3 text-left">${user.phone}</label>
-							</div>
-							
-							<div class="row">
-								<label class="col-sm-3 text-right">常用邮箱:</label> <label class="col-sm-3">${user.email}</label>
-							</div>
-							
-							<div class="row">
-								<label class="col-sm-3 text-right">地址:</label> <label class="col-sm-3">${user.address}</label>
-							</div>
-					
-							<div class="row">
-								<label class="col-sm-3 text-right">教育背景:</label> <label class="col-sm-3">${user.eduBackground}</label>
-							</div>
-							
-							<div class="row">
-								<label class="col-sm-3 text-right">部门:</label> <label class="col-sm-3">${user.department}</label>
-							</div>
-							
-							<div class="row">
-								<label class="col-sm-3 text-right">职务:</label> <label class="col-sm-3">${user.title}</label>
-							</div>
-							
-							<div class="row">
-								<label class="col-sm-3 text-right">描述:</label> <label class="col-sm-3">${user.description}</label>
-							</div>
-							
-							<div class="row">
-								<br>
-								<label class="col-sm-3 text-right">照片:</label> <img data-action="zoom" src="${user.photo }" height="100" width="100" />
-								<br><br>
-							</div>
-							
-							<div class="row">
-								<label class="col-sm-3 text-right">状态:</label>
-								<c:if test="${user.state == 0}"><label class="col-sm-3">已删除</label></c:if>
-								<c:if test="${user.state == 1}"><label class="col-sm-3">已锁定</label></c:if>
-								<c:if test="${user.state == 2}"><label class="col-sm-3">使用中</label></c:if>
-							</div>
-							
-							<c:forEach items="${userRoles}" var="userRole" varStatus="id">
-								<div class="row">
-									<c:if test="${id.index == 0 }"><label class="col-sm-3 text-right">角色列表:</label></c:if>
-									<c:if test="${id.index != 0 }"><label class="col-sm-3 text-right"></label></c:if>
-									<label class="col-sm-3">${userRole.role.cName }&nbsp;&nbsp;|&nbsp;&nbsp;${userRole.role.eName }</label><br>
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>用户名:</b>
+										</header>
+									</session>
 								</div>
-							</c:forEach>
+								<div class="col-sm-3">
+									<session class="panel">
+										<header class="panel-heading">
+											${user.userName}
+										</header>
+									</session>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>姓名:</b>
+										</header>
+									</session>
+								</div>
+								<div class="col-sm-3">
+									<session class="panel">
+										<header class="panel-heading">
+											${user.name}
+										</header>
+									</session>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>性别:</b>
+										</header>
+									</session>
+								</div>
+								<div class="col-sm-3">
+									<session class="panel">
+										<header class="panel-heading">
+											${user.sex}
+										</header>
+									</session>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>年龄:</b>
+										</header>
+									</session>
+								</div>
+								<div class="col-sm-3">
+									<session class="panel">
+										<header class="panel-heading">
+											${user.age}
+										</header>
+									</session>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>身份证号:</b>
+										</header>
+									</session>
+								</div>
+								<div class="col-sm-3">
+									<session class="panel">
+										<header class="panel-heading">
+											${user.idNo}
+										</header>
+									</session>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>手机号:</b>
+										</header>
+									</session>
+								</div>
+								<div class="col-sm-3">
+									<session class="panel">
+										<header class="panel-heading">
+											${user.phone}
+										</header>
+									</session>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>常用邮箱:</b>
+										</header>
+									</session>
+								</div>
+								<div class="col-sm-3">
+									<session class="panel">
+										<header class="panel-heading">
+											${user.email}
+										</header>
+									</session>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>地址:</b>
+										</header>
+									</session>
+								</div>
+								<div class="col-sm-6">
+									<session class="panel">
+										<header class="panel-heading">
+											${user.address}
+										</header>
+									</session>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>教育背景:</b>
+										</header>
+									</session>
+								</div>
+								<div class="col-sm-3">
+									<session class="panel">
+										<header class="panel-heading">
+											${user.eduBackground}
+										</header>
+									</session>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>部门:</b>
+										</header>
+									</session>
+								</div>
+								<div class="col-sm-3">
+									<session class="panel">
+										<header class="panel-heading">
+											${user.department}
+										</header>
+									</session>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>职务:</b>
+										</header>
+									</session>
+								</div>
+								<div class="col-sm-3">
+									<session class="panel">
+										<header class="panel-heading">
+											${user.title}
+										</header>
+									</session>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>描述:</b>
+										</header>
+									</session>
+								</div>
+								<div class="col-sm-6">
+									<session class="panel">
+										<header class="panel-heading">
+											${user.description}
+										</header>
+									</session>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>照片:</b>
+										</header>
+									</session>
+								</div>
+								<div class="col-sm-3">
+									<session class="panel">
+										<header class="panel-heading">
+											<c:if test="${user.photo != null && user.photo != '' }">
+												<img data-action="zoom" src="${user.photo }" height="100" width="100" />
+											</c:if>
+										</header>
+									</session>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-2 col-sm-offset-2">
+									<session class="panel">
+										<header class="panel-heading text-center">
+											<b>状态:</b>
+										</header>
+									</session>
+								</div>
+								<div class="col-sm-3">
+									<session class="panel">
+										<header class="panel-heading">
+											<c:if test="${user.state == 0}">已删除</c:if>
+											<c:if test="${user.state == 1}">已锁定</c:if>
+											<c:if test="${user.state == 2}">使用中</c:if>
+										</header>
+									</session>
+								</div>
+							</div>
 							
 							<br><br><br>
 							<div class="row">
