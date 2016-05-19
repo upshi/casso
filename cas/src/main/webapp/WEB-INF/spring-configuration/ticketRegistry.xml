@@ -22,25 +22,53 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
     <description>
     	Configuration for the default TicketRegistry which stores the tickets in-memory and cleans them out as specified intervals.
     </description>
-       
-    <!-- Ticket Registry -->
-    <bean id="ticketRegistry" class="org.jasig.cas.ticket.registry.DefaultTicketRegistry" />
+    <!-- DefaultTicketRegistry 非集群配置   开始-->   
+    <!--  -->
+	    <bean id="ticketRegistry" class="org.jasig.cas.ticket.registry.DefaultTicketRegistry" />
+	    
+		<bean id="ticketRegistryCleaner" class="org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner"
+			p:ticketRegistry-ref="ticketRegistry" />
 	
-	<!--Quartz -->
-	<!-- TICKET REGISTRY CLEANER -->
-	<bean id="ticketRegistryCleaner" class="org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner"
-		p:ticketRegistry-ref="ticketRegistry" />
+		<bean id="jobDetailTicketRegistryCleaner" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"
+			p:targetObject-ref="ticketRegistryCleaner"
+			p:targetMethod="clean" />
+		
+		<bean id="triggerJobDetailTicketRegistryCleaner" class="org.springframework.scheduling.quartz.SimpleTriggerBean"
+			p:jobDetail-ref="jobDetailTicketRegistryCleaner"
+			p:startDelay="20000"
+			p:repeatInterval="5000000" />
+			
+	<!-- DefaultTicketRegistry 非集群配置   结束-->	
 	
-	<bean id="jobDetailTicketRegistryCleaner" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"
-		p:targetObject-ref="ticketRegistryCleaner"
-		p:targetMethod="clean" />
 	
-	<bean id="triggerJobDetailTicketRegistryCleaner" class="org.springframework.scheduling.quartz.SimpleTriggerBean"
-		p:jobDetail-ref="jobDetailTicketRegistryCleaner"
-		p:startDelay="20000"
-		p:repeatInterval="5000000" />
+	
+	<!-- MemCacheTicketRegistry 集群配置   开始-->
+	<!--  
+		<bean id="ticketRegistry" class="org.jasig.cas.ticket.registry.MemCacheTicketRegistry">
+			<constructor-arg index="0" ref="memcachedClient" />
+			<constructor-arg index="1" value="28800" />
+			<constructor-arg index="2" value="10" />
+		</bean>
+		
+		<bean id="memcachedClient" class="net.spy.memcached.spring.MemcachedClientFactoryBean"
+			p:servers="localhost:11211,localhost:11212" p:protocol="BINARY"
+			p:locatorType="CONSISTENT" p:failureMode="Redistribute"
+			p:transcoder-ref="kryoTranscoder">
+			<property name="hashAlg">
+				<util:constant static-field="net.spy.memcached.DefaultHashAlgorithm.KETAMA_HASH" />
+			</property>
+		</bean>
+		
+		<bean id="kryoTranscoder" class="org.jasig.cas.ticket.registry.support.kryo.KryoTranscoder" init-method="initialize">
+			<constructor-arg index="0" value="8192" />
+		</bean>
+	-->	
+	
+	<!-- MemCacheTicketRegistry 集群配置   结束-->	
+	
 </beans>
