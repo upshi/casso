@@ -25,15 +25,21 @@
 		<!--页面主体  开始-->
 		<div class="wrapper">
 			<div class="panel">
-				<div class="panel-heading"> 用户管理 </div>
+				<div class="panel-heading"> 
+					用户管理
+				</div>
 				<div class="panel-body">
 					<!-- 用户查询 -->
 					<form class="form-inline" action="services/user/search">
 						<div class="form-group">
 							<a class="btn btn-danger form-control" href="services/user/toAdd">+添加新用户</a>
 						</div>
-						<div class="form-group">
-							<button id="batchImportBtn" class="btn btn-danger form-control">+批量导入</button>
+						<div class="form-group btn-group">
+							<button data-toggle="dropdown" class="btn btn-danger dropdown-toggle" type="button">批量导入 <span class="caret"></span></button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a id="batchImportBtn">导入用户</a></li>
+                                <li><a href="http://cdn.upshi.cn/casso/user/import/batchImport.xls">下载模板</a></li>
+                            </ul>
 						</div>
 						<div class="form-group">
 			                <input class="form-control" name="userName" type="text" placeholder="请输入用户名" />

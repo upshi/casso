@@ -6,24 +6,24 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cas Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-
+	
 	<!-- 修改本项目的Maven仓库地址为自建私库 -->
 	<repositories>
 		<repository>
 			<id>nexus</id>
-			<name>NBORG Nexus Repository</name>
-			<url>http://www.ranranup.com/nexus/content/groups/public/</url>
+			<name>CASSO Nexus Repository</name>
+			<url>http://www.upshi.cn:8080/nexus/content/groups/public/</url>
 		</repository>
 	</repositories>
 	
 	<pluginRepositories>
 		<pluginRepository>
 			<id>nexus</id>
-			<name>NBORG Nexus Repository</name>
-			<url>http://www.ranranup.com/nexus/content/groups/public/</url>
+			<name>CASSO Nexus Repository</name>
+			<url>http://www.upshi.cn:8080/nexus/content/groups/public/</url>
 		</pluginRepository>
 	</pluginRepositories>
-	
+
 	<properties>
 		<cas.version>3.6.0</cas.version>
 	</properties>
@@ -187,6 +187,21 @@
 		    <artifactId>cas-server-integration-memcached</artifactId>
 		    <version>${cas.version}</version>
 		    <type>jar</type>
+		</dependency>
+		
+		<!-- jstl standard-->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.1.2</version>
+		    <scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>taglibs</groupId>
+		    <artifactId>standard</artifactId>
+		    <version>1.1.2</version>
+		    <scope>compile</scope>
 		</dependency>
 		
 	</dependencies>

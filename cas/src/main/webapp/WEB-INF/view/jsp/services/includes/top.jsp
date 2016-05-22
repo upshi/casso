@@ -83,13 +83,6 @@ span {
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <form class="navbar-form navbar-left" role="search">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search">
-                            </div>
-                        </form>
-                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" src="<c:url value="<%=loginUser.getPhoto() %>" />" /> 欢迎您 ,<%=loginUser.getName() %> <b class="caret"></b></a>
                         <ul class="dropdown-menu">

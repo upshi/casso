@@ -19,13 +19,6 @@
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li>
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
-						</div>
-					</form>
-				</li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" src="${loginUser.photo }" /> 欢迎您,${loginUser.name } <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="self/info">个人信息</a></li>
