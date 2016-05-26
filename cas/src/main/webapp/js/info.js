@@ -4,9 +4,10 @@ $(function() {
 	});
 	
 	//打开重置密码模态框按钮点击事件
-	$('#resetPwd').on('click', function(){
+	$('.resetPwd').on('click', function(){
 		$('#password').val('');
 		$('#resetPwdModal').modal();
+		return false;
 	});
 	
 	//打开修改照片模态框按钮点击事件

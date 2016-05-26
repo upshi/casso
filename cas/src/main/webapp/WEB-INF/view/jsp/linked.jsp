@@ -32,7 +32,7 @@
 			<div class="wrapper">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2">
-	                    	重置密码的链接已发送至您的邮箱，请登录邮箱查看。链接48小时内有效，请尽快修改密码。
+	                    	<h3>重置密码的链接已发送至您的邮箱，请登录邮箱查看。<br><br>链接48小时内有效，请尽快修改密码。</h3>
                 	</div>	
 				</div>
 			</div>

@@ -35,7 +35,7 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" src="${user.photo }" /> 欢迎您,${user.name } <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="self/info">个人信息</a></li>
-								<li><a href="#">修改密码</a></li>
+								<li><a class="resetPwd">修改密码</a></li>
 								<li><a id="nav-logout" href="<c:url value="/logout" />" url="<c:url value="/services/logout.html" />">登出</a></li>
 							</ul>
 						</li>
@@ -299,7 +299,7 @@
 								<br>
 								<div class="col-sm-offset-2 col-sm-20">
 									<button id="updateInfo"  class="btn btn-success" type="button">编辑</button>&nbsp;&nbsp;&nbsp;&nbsp;
-									<button id="resetPwd" uuid="${user.uuid}" class="btn btn-success" type="button">修改密码</button>&nbsp;&nbsp;&nbsp;&nbsp;
+									<button uuid="${user.uuid}" class="btn btn-success resetPwd" type="button">修改密码</button>&nbsp;&nbsp;&nbsp;&nbsp;
 									<button id="updatePhoto" uuid="${user.uuid}" class="btn btn-success" type="button">更改照片</button>&nbsp;&nbsp;&nbsp;&nbsp;
 								</div>
 							</div>

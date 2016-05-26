@@ -20,10 +20,9 @@
 
 --%>
 <%@include file="includes/top.jsp"%>
-<h1>
-	服务管理
-</h1>
-
+<!-- 
+<h1>服务管理</h1>
+-->
 <c:if test="${fn:length(services) eq 0}">
        <div id="msg" class="errors"><p><spring:message code="management.services.service.warn" arguments="${defaultServiceUrl}" /></p></div>
    </c:if>

@@ -45,6 +45,7 @@
 										<a href="services/role/toUpdate/${role.uuid}"  class="btn btn-warning" type="button">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
 										<button class="btn btn-danger" onclick="deleteRole('${role.uuid}')">删除</button>&nbsp;&nbsp;&nbsp;&nbsp;
 									</c:if>
+									<a href="services/role/toAllocateUser/${role.uuid }" class="btn btn-warning">分配用户</a>
 									<a href="services/role/manage" class="btn btn-primary"  type="button">查看角色列表</a>
 								</div>
 							</div>

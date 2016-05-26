@@ -87,7 +87,7 @@ span {
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" src="<c:url value="<%=loginUser.getPhoto() %>" />" /> 欢迎您 ,<%=loginUser.getName() %> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="<c:url value="/self/info" />">个人信息</a></li>
-                            <li><a href="">修改密码</a></li>
+                            <!-- <li><a class="resetPwd">修改密码</a></li> -->
                             <li><a id="nav-logout" href="<c:url value="/logout" />" url="<c:url value="/services/logout.html" />">登出</a></li>
                         </ul>
                     </li>
