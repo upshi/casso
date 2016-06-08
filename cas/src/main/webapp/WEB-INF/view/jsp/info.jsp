@@ -379,7 +379,7 @@
 					
 					<div class="form-group" id="nameGroup">
 						<label for="name" class="col-sm-3 control-label">姓名&nbsp;*</label>
-	                    <div class="col-lg-9">
+	                    <div class="col-lg-7">
 							<input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名" value="${user.name }" />
 							<p class="help-block"></p>
 						</div>
@@ -409,7 +409,7 @@
 					
 					<div class="form-group" id="idNoGroup">
 						<label for="telephone" class="col-sm-3 control-label">身份证号&nbsp;&nbsp;</label>
-						<div class="col-lg-9">
+						<div class="col-lg-7">
 							<input type="text" class="form-control" id="idNo" value="${user.idNo }" name="idNo" placeholder="请输入身份证号">
                                   <p class="help-block"></p>
 						</div>
@@ -417,7 +417,7 @@
 					
 					<div class="form-group" id="phoneGroup">
 						<label for="mobilePhone" class="col-sm-3 control-label">手机号码&nbsp;*</label>
-						<div class="col-lg-9">
+						<div class="col-lg-7">
 							<input type="text" class="form-control" id="phone" value="${user.phone }" name="phone" placeholder="请输入手机号">
                                   <p class="help-block"></p>
 						</div>
@@ -425,7 +425,7 @@
 					
 					<div class="form-group" id="emailGroup">
 						<label for="email" class="col-sm-3 control-label">常用邮箱&nbsp;*</label>
-						<div class="col-lg-9">
+						<div class="col-lg-7">
 							<input type="text" class="form-control" id="email" name="email" value="${user.email }" placeholder="请输入邮箱">
                                   <p class="help-block"></p>
 						</div>

@@ -40,10 +40,10 @@
 		<th class="th1"><spring:message code="management.services.manage.label.name" /></th>
 		<th class="th2"><spring:message code="management.services.manage.label.serviceUrl" /></th>
 		<th class="th3 ac"><spring:message code="management.services.manage.label.enabled" /></th>
-		<th class="th4 ac"><spring:message code="management.services.manage.label.allowedToProxy" /></th>
-		<th class="th5 ac"><spring:message code="management.services.manage.label.ssoParticipant" /></th>
-		<th class="th6 ac"><spring:message code="management.services.manage.label.anonymous" /></th>
-  		<%-- 
+		<%--
+			<th class="th4 ac"><spring:message code="management.services.manage.label.allowedToProxy" /></th>
+			<th class="th5 ac"><spring:message code="management.services.manage.label.ssoParticipant" /></th>
+			<th class="th6 ac"><spring:message code="management.services.manage.label.anonymous" /></th>
   			<th class="th7 ac"><spring:message code="management.services.manage.label.usernameAttribute" /></th>
   			<th class="th8 ac"><spring:message code="management.services.manage.label.evaluationOrder" /></th>
   		--%>
@@ -60,10 +60,10 @@
 	         <td id="${service.id}" class="td1">${service.name}</td>
 	         <td class="td2">${fn:length(service.serviceId) < 50 ? service.serviceId : fn:substring(service.serviceId, 0, 50)}</td>
 	         <td class="ac td3"><img src="../images/services/${service.enabled}.gif" alt="${service.enabled ? 'Enabled' : 'Disabled'}" /></td>
+	         <%--
 	         <td class="ac td4"><img src="../images/services/${service.allowedToProxy}.gif" alt="${service.allowedToProxy ? 'Allowed to Proxy' : 'Not Allowed to Proxy'}" /></td>
 	         <td class="ac td5"><img src="../images/services/${service.ssoEnabled}.gif" alt="${service.ssoEnabled ? 'SSO Enabled' : 'SSO Disabled'}" /></td>
 	         <td class="ac td6"><img src="../images/services/${service.anonymousAccess}.gif" alt="${service.anonymousAccess ? 'Anonyous Access Enabled' : 'Anonyous Access Disabled'}" /></td>
-	         <%-- 
 	         <td class="ac td7">${service.usernameAttribute}</td>
 	         <td class="ac td8">${service.evaluationOrder}</td>
 	          --%>

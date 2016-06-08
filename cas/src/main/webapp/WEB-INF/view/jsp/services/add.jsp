@@ -56,12 +56,14 @@
 				<br />
 			</span>
 			
-			<span class="oneField">
-				<label for="theme" class="preField"><spring:message code="management.services.add.property.themeName" /></label>
-				<form:input path="theme" size="11" maxlength="10" cssClass="required" cssErrorClass="error" />
-				<form:errors path="theme" cssClass="formError" />
-				<br />
-			</span>
+			<div style="display:none">
+				<span class="oneField">
+					<label for="theme" class="preField"><spring:message code="management.services.add.property.themeName" /></label>
+					<form:input path="theme" size="11" maxlength="10" cssClass="required" cssErrorClass="error" />
+					<form:errors path="theme" cssClass="formError" />
+					<br />
+				</span>
+			</div>
 	 
 			<span class="oneField">
 				<label class="preField ieFix" style="float:left;"><spring:message code="management.services.add.property.status" /></label>
@@ -70,19 +72,21 @@
 						<form:checkbox path="enabled" value="true" cssClass="check" />
 						<label for="enabled1" id="enabled-l" class="postField"><spring:message code="management.services.add.property.status.enabled" /></label>
 					</span>
-					<span class="oneChoice">
-						<form:checkbox path="allowedToProxy" value="true" cssClass="check" />
-						<label for="allowedToProxy1" id="proxy-l" class="postField"><spring:message code="management.services.add.property.status.allowedToProxy" /></label>
-					</span>
-					<span class="oneChoice">
-						<form:checkbox path="ssoEnabled" value="true" cssClass="check" />
-						<label for="ssoEnabled1" id="ssl-l" class="postField"><spring:message code="management.services.add.property.status.ssoParticipant" /></label>
-					</span>
-					
-					<span class="oneChoice">
-						<form:checkbox path="anonymousAccess" value="true" cssClass="check" />
-						<label for="anonymousAccess1" id="anonymousAccess-l" class="postField"><spring:message code="management.services.add.property.status.anonymousAccess" /></label>
-					</span>
+					<div style="display:none">
+						<span class="oneChoice">
+							<form:checkbox path="allowedToProxy" value="true" cssClass="check" />
+							<label for="allowedToProxy1" id="proxy-l" class="postField"><spring:message code="management.services.add.property.status.allowedToProxy" /></label>
+						</span>
+						<span class="oneChoice">
+							<form:checkbox path="ssoEnabled" value="true" cssClass="check" />
+							<label for="ssoEnabled1" id="ssl-l" class="postField"><spring:message code="management.services.add.property.status.ssoParticipant" /></label>
+						</span>
+						
+						<span class="oneChoice">
+							<form:checkbox path="anonymousAccess" value="true" cssClass="check" />
+							<label for="anonymousAccess1" id="anonymousAccess-l" class="postField"><spring:message code="management.services.add.property.status.anonymousAccess" /></label>
+						</span>
+				   </div>
 				</span>
 				<br/>
 			</span>
@@ -91,23 +95,25 @@
 				<label class="preField ieFix" style="float:left;"><spring:message code="management.services.add.property.attributes" /></label>
 				<form:select path="allowedAttributes" items="${availableAttributes}" multiple="true" />
 			</span>
-		     
-	    	<span class="oneField"><label class="preField ieFix" style="float:left;"><spring:message code="management.services.manage.label.usernameAttribute" /></label>
-	    		<form:select path="usernameAttribute" items="${availableUsernameAttributes}" />
-	    		<form:errors path="usernameAttribute" cssClass="formError" />
-	    	</span>
-	      		            
-		    <span class="oneChoice">
-		      <form:checkbox path="ignoreAttributes" value="true" cssClass="check" />
-		      <label for="ignoreAttributes1" id="ignoreAttributes-l" class="postField"><spring:message code="management.services.add.property.ignoreAttributes" /></label>
-		    </span>
 		    
-		    <span class="oneField">
-		      <label for="theme" class="preField"><spring:message code="management.services.add.property.evaluationOrder" /></label>
-		      <form:input path="evaluationOrder" size="11" maxlength="10" cssClass="required" cssErrorClass="error" />
-		      <form:errors path="evaluationOrder" cssClass="formError" />
-		      <br />
-		    </span>
+		    <div style="display:none"> 
+		    	<span class="oneField"><label class="preField ieFix" style="float:left;"><spring:message code="management.services.manage.label.usernameAttribute" /></label>
+		    		<form:select path="usernameAttribute" items="${availableUsernameAttributes}" />
+		    		<form:errors path="usernameAttribute" cssClass="formError" />
+		    	</span>
+	      		            
+			    <span class="oneChoice">
+			      <form:checkbox path="ignoreAttributes" value="true" cssClass="check" />
+			      <label for="ignoreAttributes1" id="ignoreAttributes-l" class="postField"><spring:message code="management.services.add.property.ignoreAttributes" /></label>
+			    </span>
+		    
+			    <span class="oneField">
+			      <label for="theme" class="preField"><spring:message code="management.services.add.property.evaluationOrder" /></label>
+			      <form:input path="evaluationOrder" size="11" maxlength="10" cssClass="required" cssErrorClass="error" />
+			      <form:errors path="evaluationOrder" cssClass="formError" />
+			      <br />
+			    </span>
+		    </div>
 		</div>
 		<div class="actions">
 			<button type="submit" class="primaryAction" id="submit-wf_FormGardenDemonst" value="<spring:message code="management.services.add.button.save" />">
