@@ -19,7 +19,7 @@
     under the License.
 
 --%>
-<%@include file="includes/top.jsp"%>
+<%@include file="includes/top-manage.jsp"%>
 <!-- 
 <h1>服务管理</h1>
 -->
